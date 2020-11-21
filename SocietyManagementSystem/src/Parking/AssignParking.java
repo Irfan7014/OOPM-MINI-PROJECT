@@ -6,8 +6,8 @@ import societymanagementsystem.MainPage;
 public class AssignParking implements ActionListener
 {
     JFrame jf;
-    JLabel lbltitle, lblowner, lblarea, lblvehicletype;   //Created Labels
-    JTextField towner, tarea, tvehicletype;     //Created TextFields
+    JLabel lbltitle, lblowner, lblarea, lblvehicletype, lblparkingspotno, lblvehicleno;   //Created Labels
+    JTextField towner, tarea, tvehicletype, tparkingspotno, tvehicleno;                  //Created TextFields
     JButton bcancel;
     public AssignParking()
     {
@@ -41,7 +41,7 @@ public class AssignParking implements ActionListener
         jf.add(towner);
 
         //2.Area
-        lblarea = new JLabel("AREA (in sq.M) :- ");
+        lblarea = new JLabel("AREA (in sq.m) :- ");
         lblarea.setBounds(20, 150, 200, 30);
         lblarea.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
         lblarea.setForeground(Color.BLACK);
@@ -54,7 +54,7 @@ public class AssignParking implements ActionListener
         jf.add(tarea);
 
         //3.Vehicle Type
-        lblvehicletype= new JLabel("Vehicle Type :- ");
+        lblvehicletype= new JLabel("VEHICLE TYPE :- ");
         lblvehicletype.setBounds(20, 200, 200, 30);
         lblvehicletype.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
         lblvehicletype.setForeground(Color.BLACK);
@@ -66,8 +66,34 @@ public class AssignParking implements ActionListener
         tvehicletype.setForeground(Color.BLACK);
         jf.add(tvehicletype);
 
+        //4. Parking Spot Number
+        lblparkingspotno = new JLabel("PARKING SPOT NO :- ");
+        lblparkingspotno.setBounds(20, 250, 250, 30);
+        lblparkingspotno.setFont(new Font("Times_Now_Roman", Font.PLAIN, 20));
+        lblparkingspotno.setForeground(Color.BLACK);
+        jf.add(lblparkingspotno);
+
+        tparkingspotno = new JTextField();
+        tparkingspotno.setBounds(320, 250, 240, 30);
+        tparkingspotno.setFont(new Font("serif", Font.PLAIN, 20));
+        tparkingspotno.setForeground(Color.BLACK);
+        jf.add(tparkingspotno);
+
+        //5. Number Plate
+        lblvehicleno = new JLabel("VEHICLE NUMBER :- ");
+        lblvehicleno.setBounds(20, 300, 250, 30);
+        lblvehicleno.setFont(new Font("Times_Now_Roman", Font.PLAIN, 20));
+        lblvehicleno.setForeground(Color.BLACK);
+        jf.add(lblvehicleno);
+
+        tvehicleno = new JTextField();
+        tvehicleno.setBounds(320, 300, 240, 30);
+        tvehicleno.setFont(new Font("serif", Font.PLAIN, 20));
+        tvehicleno.setForeground(Color.BLACK);
+        jf.add(tvehicleno);
+
         bcancel=new JButton("CANCEL");
-        bcancel.setBounds(163,250,130,30);
+        bcancel.setBounds(163,350,130,30);
         bcancel.setBackground(Color.BLACK);
         bcancel.setForeground(Color.WHITE);
         bcancel.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
