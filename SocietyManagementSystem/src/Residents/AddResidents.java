@@ -10,7 +10,7 @@ public class AddResidents implements ActionListener
     JTextField towner,twing,tflatno,tage,toccupation,tarriving_year,ttotalfamilymem;
     JCheckBox jcbmarried,jcbsingle,jcbowner,jcbrent;
     ButtonGroup G1,G2;
-    JButton bback,addResident;
+    JButton bback,bAddResidents;
     public AddResidents()
     {
         //Frame Details
@@ -19,7 +19,7 @@ public class AddResidents implements ActionListener
         jf.setResizable(false);
         jf.setLayout(null);
         jf.setLocation(20,20);
-        jf.setSize(1000,700);
+        jf.setSize(850,700);
         
         //Label and TextField Details
         //Title
@@ -158,13 +158,22 @@ public class AddResidents implements ActionListener
         jcbrent.setForeground(Color.BLACK);
         jf.add(jcbrent);
         
+        //Add Residents Button
+        bAddResidents=new JButton("ADD RESIDENTS");
+        bAddResidents.setBounds(230,600,250,40);
+        bAddResidents.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
+        bAddResidents.setForeground(Color.WHITE);
+        bAddResidents.setBackground(Color.BLACK);
+        jf.add(bAddResidents);
+        
+        //Back Button
         bback=new JButton("BACK");
-        bback.setBounds(245,600,150,40);
+        bback.setBounds(520,600,100,40);
         bback.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
         bback.setForeground(Color.WHITE);
         bback.setBackground(Color.BLACK);
         jf.add(bback);
-    
+        
         G1=new ButtonGroup();
         G1.add(jcbmarried);
         G1.add(jcbsingle);
@@ -173,6 +182,7 @@ public class AddResidents implements ActionListener
         G2.add(jcbowner);
         G2.add(jcbrent);
         
+        bAddResidents.addActionListener(this);
         bback.addActionListener(this);
         jf.setVisible(true);
     }
@@ -183,7 +193,13 @@ public class AddResidents implements ActionListener
             jf.dispose();
             MainPage mp=new MainPage();
         }
+        if(ae.getSource()==bAddResidents)
+        {
+            jf.dispose();
+            JOptionPane.showMessageDialog(jf,"THE RESIDENT WAS SUCCESSFULLY ADDED!");
+        }
     }
+        
     public static void main(String args[])
     {
         AddResidents ar=new AddResidents();
