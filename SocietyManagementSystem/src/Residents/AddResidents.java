@@ -9,6 +9,7 @@ public class AddResidents implements ActionListener
     JLabel lbltitle,lblowner,lblwing,lblflatno,lblage,lbloccupation,lblarriving_year,lbltotalfamilymem,lblnamefamilymem;
     JTextField towner,twing,tflatno,tage,toccupation,tarriving_year,ttotalfamilymem,tnamefamilymem;
     JButton bback;
+    //Test
     public AddResidents()
     {
         //Frame Details
@@ -111,6 +112,7 @@ public class AddResidents implements ActionListener
         lbltotalfamilymem.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
         lbltotalfamilymem.setForeground(Color.BLACK);
         jf.add(lbltotalfamilymem);
+        //test
         
         ttotalfamilymem=new JTextField();
         ttotalfamilymem.setBounds(320,400,240,30);
