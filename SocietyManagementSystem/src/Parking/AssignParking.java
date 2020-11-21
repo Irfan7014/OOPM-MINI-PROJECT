@@ -5,23 +5,69 @@ import java.awt.event.*;
 import societymanagementsystem.MainPage;
 public class AssignParking implements ActionListener
 {
-    JButton bcancel;
     JFrame jf;
-    JPanel contentPane;
+    JLabel lbltitle, lblowner, lblarea, lblvehicletype;   //Created Labels
+    JTextField towner, tarea, tvehicletype;     //Created TextFields
+    JButton bcancel;
     public AssignParking()
     {
+        //Frame Details
         jf=new JFrame("ASSIGN PARKING");
-        jf.setBounds(10,10, 1296, 700);
-        jf.setResizable(false);
-        contentPane = new JPanel();
-        jf.setContentPane(contentPane);
-        contentPane.setLayout(null);
-        jf.getContentPane().setBackground(Color.WHITE);
-        contentPane.setBackground(Color.WHITE);
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
+        jf.setResizable(false);
+        jf.setLayout(null);
+        jf.setLocation(200, 200);
+        jf.setSize(800, 500);
+
+        //Label and TextField Details
+        //Title
+        lbltitle = new JLabel("ASSIGN PARKING");
+        lbltitle.setBounds(20, 0, 400, 50);
+        lbltitle.setFont(new Font("serif", Font.ITALIC, 36));
+        lbltitle.setForeground(Color.BLUE);
+        jf.add(lbltitle);
+
+        //1.Owner
+        lblowner = new JLabel("NAME OF OWNER :- ");
+        lblowner.setBounds(20, 100, 200, 30);
+        lblowner.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
+        lblowner.setForeground(Color.BLACK);
+        jf.add(lblowner);
+
+        towner = new JTextField();
+        towner.setBounds(320, 100, 240, 30);
+        towner.setFont(new Font("serif", Font.PLAIN, 20));
+        towner.setForeground(Color.BLACK);
+        jf.add(towner);
+
+        //2.Area
+        lblarea = new JLabel("AREA (in sq.M) :- ");
+        lblarea.setBounds(20, 150, 200, 30);
+        lblarea.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
+        lblarea.setForeground(Color.BLACK);
+        jf.add(lblarea);
+
+        tarea = new JTextField();
+        tarea.setBounds(320, 150, 240, 30);
+        tarea.setFont(new Font("serif", Font.PLAIN, 20));
+        tarea.setForeground(Color.BLACK);
+        jf.add(tarea);
+
+        //3.Vehicle Type
+        lblvehicletype= new JLabel("Vehicle Type :- ");
+        lblvehicletype.setBounds(20, 200, 200, 30);
+        lblvehicletype.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
+        lblvehicletype.setForeground(Color.BLACK);
+        jf.add(lblvehicletype);
+
+        tvehicletype = new JTextField();
+        tvehicletype.setBounds(320, 200, 240, 30);
+        tvehicletype.setFont(new Font("serif", Font.PLAIN, 20));
+        tvehicletype.setForeground(Color.BLACK);
+        jf.add(tvehicletype);
+
         bcancel=new JButton("CANCEL");
-        bcancel.setBounds(163,195,130,30);
+        bcancel.setBounds(163,250,130,30);
         bcancel.setBackground(Color.BLACK);
         bcancel.setForeground(Color.WHITE);
         bcancel.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
