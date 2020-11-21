@@ -159,7 +159,7 @@ public class AddResidents implements ActionListener
         jf.add(jcbrent);
         
         //Add Residents Button
-        bAddResidents=new JButton("ADD RESIDENTS");
+        bAddResidents=new JButton("ADD RESIDENT");
         bAddResidents.setBounds(230,600,250,40);
         bAddResidents.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
         bAddResidents.setForeground(Color.WHITE);
