@@ -8,7 +8,7 @@ public class AssignParking implements ActionListener
     JFrame jf;
     JLabel lbltitle, lblowner, lblarea, lblvehicletype, lblparkingspotno, lblvehicleno;   //Created Labels
     JTextField towner, tarea, tvehicletype, tparkingspotno, tvehicleno;                  //Created TextFields
-    JButton bcancel;
+    JButton bcancel,bAssignParking;
     public AssignParking()
     {
         //Frame Details
@@ -17,7 +17,7 @@ public class AssignParking implements ActionListener
         jf.setResizable(false);
         jf.setLayout(null);
         jf.setLocation(200, 200);
-        jf.setSize(800, 500);
+        jf.setSize(700, 450);
 
         //Label and TextField Details
         //Title
@@ -91,9 +91,19 @@ public class AssignParking implements ActionListener
         tvehicleno.setFont(new Font("serif", Font.PLAIN, 20));
         tvehicleno.setForeground(Color.BLACK);
         jf.add(tvehicleno);
-
+        
+        //Assign Parking Button
+        bAssignParking=new JButton("ASSIGN PARKING");
+        bAssignParking.setBounds(165,350,200,30);
+        bAssignParking.setBackground(Color.BLACK);
+        bAssignParking.setForeground(Color.WHITE);
+        bAssignParking.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
+        bAssignParking.addActionListener(this);
+        jf.add(bAssignParking);
+        
+        //Cancel Button
         bcancel=new JButton("CANCEL");
-        bcancel.setBounds(163,350,130,30);
+        bcancel.setBounds(405,350,130,30);
         bcancel.setBackground(Color.BLACK);
         bcancel.setForeground(Color.WHITE);
         bcancel.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
@@ -109,6 +119,13 @@ public class AssignParking implements ActionListener
             jf.dispose();
             MainPage mp=new MainPage();
         }
+        if(ae.getSource()==bAssignParking)
+        {
+            jf.dispose();
+            JOptionPane.showMessageDialog(jf, "PARKING "+" ASSIGNED TO "+towner.getText());
+            new AssignParking();
+        }
+        
     }
     public static void main(String args[])
     {
