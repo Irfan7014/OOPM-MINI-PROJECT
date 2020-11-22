@@ -122,7 +122,7 @@ public class AssignParking implements ActionListener
         if(ae.getSource()==bAssignParking)
         {
             jf.dispose();
-            JOptionPane.showMessageDialog(jf, "PARKING "+" ASSIGNED TO "+towner.getText());
+            JOptionPane.showMessageDialog(jf, "PARKING "+tparkingspotno.getText()+" ASSIGNED TO "+towner.getText());
             new AssignParking();
         }
         

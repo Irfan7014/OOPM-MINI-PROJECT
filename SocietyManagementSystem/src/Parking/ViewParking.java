@@ -10,7 +10,7 @@ public class ViewParking implements ActionListener
     JPanel contentPane;
     public ViewParking()
     {
-        jf=new JFrame("ASSIGN PARKING");
+        jf=new JFrame("VIEW PARKING");
         jf.setBounds(10,10, 1296, 700);
         jf.setResizable(false);
         contentPane = new JPanel();
@@ -21,7 +21,7 @@ public class ViewParking implements ActionListener
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         bcancel=new JButton("CANCEL");
-        bcancel.setBounds(163,195,130,30);
+        bcancel.setBounds(583,650,130,30);
         bcancel.setBackground(Color.BLACK);
         bcancel.setForeground(Color.WHITE);
         bcancel.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
