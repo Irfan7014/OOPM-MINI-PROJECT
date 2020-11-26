@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
+import java.util.ArrayList;
 public class Entry implements ActionListener
 {
     JFrame jf;
@@ -210,31 +211,20 @@ public class Entry implements ActionListener
     {
         if(ae.getSource()==bdone)
         {
-            try
-            {
-                Databaseconn c=new Databaseconn();
-                String s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,q;
-                s1=tname.getText();
-                s2=tpurpose.getText();
-                s3=tphone.getText();
-                s4=tflat.getText();
-                s5=tdate.getText();
-                s6=tentrytime.getText();
-                s7=texittime.getText();
-                s8=twatchman.getText();
-                s9=tgate.getText();
-                s10=tvehicle.getText();
-                q="insert into Entries (Name, Purpose, Phone, Flat, Date, Entry_Time, Exit_Time, Watchman_Present, Gate, Vehicle_Num) values ('"+s1+"',"+"'"+s2+"',"+"'"+s3+"',"+"'"+s4+"',"+"'"+s5+"',"+"'"+s6+"',"+"'"+s7+"',"+"'"+s8+"',"+"'"+s9+"',"+"'"+s10+"')";
-                
-                c.s.executeUpdate(q);
-                JOptionPane.showMessageDialog(null,"Details Successfully Added");
-                jf.dispose();
-                Entry e=new Entry(s8,s9);
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }            
+            ArrayList<String> entry=new ArrayList<String>();
+            entry.add(tname.getText());
+            entry.add(tpurpose.getText());
+            entry.add(tphone.getText());
+            entry.add(tflat.getText());
+            entry.add(tdate.getText());
+            entry.add(tentrytime.getText());
+            entry.add(texittime.getText());
+            entry.add(twatchman.getText());
+            entry.add(tgate.getText());
+            entry.add(tvehicle.getText());
+            GateDao gatedao=new GateDao();
+            jf.dispose();
+            gatedao.addEntry(entry);
         }
         if(ae.getSource()==bback)
         {

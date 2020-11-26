@@ -82,41 +82,20 @@ class ViewPhone implements ActionListener
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        try {
-            Databaseconn c=new Databaseconn();
-            ResultSet rs = c.s.executeQuery("select * from entries where Phone='"+tphone.getText()+"';");
-            while(rs.next()) 
-            {
-                name = rs.getString("Name");
-                pur = rs.getString("Purpose");
-                ph = rs.getString("Phone");
-                flat = rs.getString("Flat");
-                date = rs.getString("Date");
-                entry = rs.getString("Entry_Time");
-                exit = rs.getString("Exit_Time");
-                watchman = rs.getString("Watchman_Present");
-                gate = rs.getString("Gate");
-                vehicle = rs.getString("Vehicle_Num");
-                model.addRow(new Object[]{name,pur,ph,flat,date,entry,exit,watchman,gate,vehicle});
-                k++;
-            }
-            if(k!=0)
-            {
-                frame.add(scroll);
-                frame.setResizable(false);
-                frame.setSize(1160,350);    
-                frame.setVisible(true);
-            }
-            if(k==0)
-            {
-                jf.dispose();
-                JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-        } 
-        catch (Exception ex) 
+        GateDao gatedao=new GateDao();
+        ArrayList<String> entries=gatedao.viewEntriesByPhone(tphone.getText());
+        try
         {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            model.addRow(new Object[]{entries.get(0),entries.get(1),entries.get(2),entries.get(3),entries.get(4),entries.get(5),entries.get(6),entries.get(7),entries.get(8),entries.get(9)});
+            frame.add(scroll);
+            frame.setResizable(false);
+            frame.setSize(1160,350);    
+            frame.setVisible(true);
+        }
+        catch(Exception e)
+        {
+            jf.dispose();
+            JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }

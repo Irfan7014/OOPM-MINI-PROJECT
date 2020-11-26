@@ -12,7 +12,6 @@ class ViewName implements ActionListener
     JTextField tname;
     JButton bsearch,bback,bdone;
     JTable table;
-    int k=0;
     String column_names[]={"Name","Purpose","Phone","Flat","Date","Entry_Time","Exit Time","Watchman_Present","Gate","Vehicle_Num"};
     ViewName()
     {
