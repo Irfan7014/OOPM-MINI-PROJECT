@@ -82,10 +82,12 @@ class ViewName implements ActionListener
         scroll.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         GateDao gatedao=new GateDao();
-        ArrayList<String> entries=gatedao.viewEntriesByName(tname.getText());
-        try
-        {
-            model.addRow(new Object[]{entries.get(0),entries.get(1),entries.get(2),entries.get(3),entries.get(4),entries.get(5),entries.get(6),entries.get(7),entries.get(8),entries.get(9)});
+        ArrayList<EntryObject> entries=gatedao.viewEntriesByName(tname.getText());
+        try{
+            for(EntryObject entryobject:entries)
+            {
+                model.addRow(new Object[]{entryobject.getName(),entryobject.getPurpose(),entryobject.getPhone(),entryobject.getFlat(),entryobject.getDate(),entryobject.getEntrytime(),entryobject.getExittime(),entryobject.getWatchman(),entryobject.getGate(),entryobject.getVehicle()});
+            }
             frame.add(scroll);
             frame.setResizable(false);
             frame.setSize(1160,350);    
@@ -95,8 +97,7 @@ class ViewName implements ActionListener
         {
             jf.dispose();
             JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        }  
     }
     public void actionPerformed(ActionEvent ae)
     {

@@ -12,7 +12,7 @@ class ViewDate implements ActionListener
     JTextField tdate;
     JButton bsearch,bback,bdone;
     JTable table;
-    String column_names[]={"Name","Purpose","Phone","Flat","Date","Entry_Time","Exit Time","Watchman_Present","Gate","Vehicle_Num"};
+    String column_names[]={"Name","Purpose","Phone","Flat","Date","Entry Time","Exit Time","Watchman Present","Gate","Vehicle Num"};
     public ViewDate()
     {
         //Frame details
@@ -82,9 +82,12 @@ class ViewDate implements ActionListener
         scroll.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         GateDao gatedao=new GateDao();
-        ArrayList<String> entries=gatedao.viewEntriesByDate(tdate.getText());
+        ArrayList<EntryObject> entries=gatedao.viewEntriesByDate(tdate.getText());
         try{
-            model.addRow(new Object[]{entries.get(0),entries.get(1),entries.get(2),entries.get(3),entries.get(4),entries.get(5),entries.get(6),entries.get(7),entries.get(8),entries.get(9)});
+            for(EntryObject entryobject:entries)
+            {
+                model.addRow(new Object[]{entryobject.getName(),entryobject.getPurpose(),entryobject.getPhone(),entryobject.getFlat(),entryobject.getDate(),entryobject.getEntrytime(),entryobject.getExittime(),entryobject.getWatchman(),entryobject.getGate(),entryobject.getVehicle()});
+            }
             frame.add(scroll);
             frame.setResizable(false);
             frame.setSize(1160,350);    

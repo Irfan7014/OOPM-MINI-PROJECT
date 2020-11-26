@@ -6,27 +6,28 @@ import javax.swing.JOptionPane;
 
 public class GateDao 
 {
-    public ArrayList<String> viewEntriesByDate(String date)
+    public ArrayList<EntryObject> viewEntriesByDate(String date)
     {
-        ArrayList<String> entries=new ArrayList<String>();
+        ArrayList<EntryObject> entries=new ArrayList<EntryObject>();
         try 
         {
             Databaseconn c=new Databaseconn();
             ResultSet rs = c.s.executeQuery("select * from entries where Date='"+date+"';");
             while(rs.next()) 
             {
-                entries.add(rs.getString("Name"));
-                entries.add(rs.getString("Purpose"));
-                entries.add(rs.getString("Phone"));
-                entries.add(rs.getString("Flat"));
-                entries.add(rs.getString("Date"));
-                entries.add(rs.getString("Entry_Time"));
-                entries.add(rs.getString("Exit_Time"));
-                entries.add(rs.getString("Watchman_Present"));
-                entries.add(rs.getString("Gate"));
-                entries.add(rs.getString("Vehicle_Num"));
+                EntryObject obj=new EntryObject();
+                obj.setWatchman(rs.getString("Watchman_Present"));
+                obj.setName(rs.getString("Name"));
+                obj.setGate(rs.getString("Gate"));
+                obj.setPurpose(rs.getString("Purpose"));
+                obj.setFlat(rs.getString("Flat"));
+                obj.setVehicle(rs.getString("Vehicle_Num"));
+                obj.setPhone(rs.getString("Phone"));
+                obj.setDate(rs.getString("Date"));
+                obj.setEntrytime(rs.getString("Entry_Time"));
+                obj.setExittime(rs.getString("Exit_Time"));
+                entries.add(obj);
             }
-
         } 
         catch (Exception ex) 
         {
@@ -34,27 +35,28 @@ public class GateDao
         }
         return entries;
     }
-    public ArrayList<String> viewEntriesByName(String name)
+    public ArrayList<EntryObject> viewEntriesByName(String name)
     {
-        ArrayList<String> entries=new ArrayList<String>();
+        ArrayList<EntryObject> entries=new ArrayList<EntryObject>();
         try 
         {
             Databaseconn c=new Databaseconn();
             ResultSet rs = c.s.executeQuery("select * from entries where Name='"+name+"';");
             while(rs.next()) 
             {
-                entries.add(rs.getString("Name"));
-                entries.add(rs.getString("Purpose"));
-                entries.add(rs.getString("Phone"));
-                entries.add(rs.getString("Flat"));
-                entries.add(rs.getString("Date"));
-                entries.add(rs.getString("Entry_Time"));
-                entries.add(rs.getString("Exit_Time"));
-                entries.add(rs.getString("Watchman_Present"));
-                entries.add(rs.getString("Gate"));
-                entries.add(rs.getString("Vehicle_Num"));
+                EntryObject obj=new EntryObject();
+                obj.setWatchman(rs.getString("Watchman_Present"));
+                obj.setName(rs.getString("Name"));
+                obj.setGate(rs.getString("Gate"));
+                obj.setPurpose(rs.getString("Purpose"));
+                obj.setFlat(rs.getString("Flat"));
+                obj.setVehicle(rs.getString("Vehicle_Num"));
+                obj.setPhone(rs.getString("Phone"));
+                obj.setDate(rs.getString("Date"));
+                obj.setEntrytime(rs.getString("Entry_Time"));
+                obj.setExittime(rs.getString("Exit_Time"));
+                entries.add(obj);
             }
-
         } 
         catch (Exception ex) 
         {
@@ -62,27 +64,28 @@ public class GateDao
         }
         return entries;
     }
-    public ArrayList<String> viewEntriesByPhone(String phno)
+    public ArrayList<EntryObject> viewEntriesByPhone(String phno)
     {
-        ArrayList<String> entries=new ArrayList<String>();
+        ArrayList<EntryObject> entries=new ArrayList<EntryObject>();
         try 
         {
             Databaseconn c=new Databaseconn();
             ResultSet rs = c.s.executeQuery("select * from entries where Phone='"+phno+"';");
             while(rs.next()) 
             {
-                entries.add(rs.getString("Name"));
-                entries.add(rs.getString("Purpose"));
-                entries.add(rs.getString("Phone"));
-                entries.add(rs.getString("Flat"));
-                entries.add(rs.getString("Date"));
-                entries.add(rs.getString("Entry_Time"));
-                entries.add(rs.getString("Exit_Time"));
-                entries.add(rs.getString("Watchman_Present"));
-                entries.add(rs.getString("Gate"));
-                entries.add(rs.getString("Vehicle_Num"));
+                EntryObject obj=new EntryObject();
+                obj.setWatchman(rs.getString("Watchman_Present"));
+                obj.setName(rs.getString("Name"));
+                obj.setGate(rs.getString("Gate"));
+                obj.setPurpose(rs.getString("Purpose"));
+                obj.setFlat(rs.getString("Flat"));
+                obj.setVehicle(rs.getString("Vehicle_Num"));
+                obj.setPhone(rs.getString("Phone"));
+                obj.setDate(rs.getString("Date"));
+                obj.setEntrytime(rs.getString("Entry_Time"));
+                obj.setExittime(rs.getString("Exit_Time"));
+                entries.add(obj);
             }
-
         } 
         catch (Exception ex) 
         {
