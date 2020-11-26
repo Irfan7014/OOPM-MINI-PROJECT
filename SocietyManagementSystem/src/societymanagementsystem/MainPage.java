@@ -245,7 +245,7 @@ public class MainPage implements ActionListener
         if(msg.equals("Send Maintenance"))
         {
             jf.dispose();
-            SendMaintenance sm=new SendMaintenance();            
+            CheckMaintenance sm=new CheckMaintenance();            
         }
         if(msg.equals("Calculate Maintenance"))
         {

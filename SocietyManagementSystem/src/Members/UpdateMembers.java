@@ -1,9 +1,11 @@
 package Members;
 import Databases.Databasec1;
+import Databases.MembersDao;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
+import java.util.ArrayList;
 public class UpdateMembers implements ActionListener
 {
     JFrame jf;
@@ -197,66 +199,22 @@ public class UpdateMembers implements ActionListener
     }
     public void update_names()
     {
-        int k=0;        
-        try 
-        {
-            Databasec1 c=new Databasec1();
-            String q;
-            chairman_name=tchairman_name.getText();
-            sec_name=tsec_name.getText();
-            treasurer_name=ttreasurer_name.getText();
-            mem1_name=tmem1_name.getText();
-            mem2_name=tmem2_name.getText();
-            mem3_name=tmem3_name.getText();
-            mem4_name=tmem4_name.getText();
-            mem5_name=tmem5_name.getText();
-            mem6_name=tmem6_name.getText();
-            mem7_name=tmem7_name.getText();
-            mem8_name=tmem8_name.getText();
-            q="UPDATE members SET NAME='"+chairman_name+"' WHERE DESIGNATION='CHAIRMAN';";
-            System.out.println("Hey");
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+sec_name+"' WHERE DESIGNATION='SECRETARY';";
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+treasurer_name+"' WHERE DESIGNATION='TREASURER';";
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+mem1_name+"' WHERE DESIGNATION='MEMBER 1';";
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+mem2_name+"' WHERE DESIGNATION='MEMBER 2';";
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+mem3_name+"' WHERE DESIGNATION='MEMBER 3';";
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+mem4_name+"' WHERE DESIGNATION='MEMBER 4';";
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+mem5_name+"' WHERE DESIGNATION='MEMBER 5';";
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+mem6_name+"' WHERE DESIGNATION='MEMBER 6';";
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+mem7_name+"' WHERE DESIGNATION='MEMBER 7';";
-            c.s.executeUpdate(q);
-            
-            q="UPDATE members SET NAME='"+mem8_name+"' WHERE DESIGNATION='MEMBER 8';";
-            c.s.executeUpdate(q);
-            k++;
-            
-        } 
-        catch (Exception ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        if(k>0)
-        {
-            JOptionPane.showMessageDialog(null,"MEMBER DETAILS UPDATED SUCCESSFULLY");            
-        }
+        ArrayList<String> members=new ArrayList<String>();
+        members.add(tchairman_name.getText());
+        members.add(tsec_name.getText());
+        members.add(ttreasurer_name.getText());
+        members.add(tmem1_name.getText());
+        members.add(tmem2_name.getText());
+        members.add(tmem3_name.getText());
+        members.add(tmem4_name.getText());
+        members.add(tmem5_name.getText());
+        members.add(tmem6_name.getText());
+        members.add(tmem7_name.getText());
+        members.add(tmem8_name.getText());
+        
+        MembersDao membersdao=new MembersDao();
+        membersdao.updateMembersList(members);
+        jf.dispose();
     }
     public void actionPerformed(ActionEvent ae)
     {

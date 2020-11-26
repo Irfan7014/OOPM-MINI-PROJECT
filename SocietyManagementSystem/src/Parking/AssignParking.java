@@ -6,8 +6,8 @@ import societymanagementsystem.MainPage;
 public class AssignParking implements ActionListener
 {
     JFrame jf;
-    JLabel lbltitle, lblowner, lblarea, lblvehicletype, lblparkingspotno, lblvehicleno;   //Created Labels
-    JTextField towner, tarea, tvehicletype, tparkingspotno, tvehicleno;                  //Created TextFields
+    JLabel lbltitle, lblowner, lblflat, lblvehicletype, lblparkingspotno, lblvehicleno;   //Created Labels
+    JTextField towner, tflat, tvehicletype, tparkingspotno, tvehicleno;                  //Created TextFields
     JButton bcancel,bAssignParking;
     public AssignParking()
     {
@@ -41,31 +41,31 @@ public class AssignParking implements ActionListener
         jf.add(towner);
 
         //2.Area
-        lblarea = new JLabel("AREA (in sq.m) :- ");
-        lblarea.setBounds(20, 150, 200, 30);
-        lblarea.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
-        lblarea.setForeground(Color.BLACK);
-        jf.add(lblarea);
+        lblflat = new JLabel("FLAT NO. :- ");
+        lblflat.setBounds(20, 150, 200, 30);
+        lblflat.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
+        lblflat.setForeground(Color.BLACK);
+        jf.add(lblflat);
 
-        tarea = new JTextField();
-        tarea.setBounds(320, 150, 240, 30);
-        tarea.setFont(new Font("serif", Font.PLAIN, 20));
-        tarea.setForeground(Color.BLACK);
-        jf.add(tarea);
+        tflat = new JTextField();
+        tflat.setBounds(320, 150, 240, 30);
+        tflat.setFont(new Font("serif", Font.PLAIN, 20));
+        tflat.setForeground(Color.BLACK);
+        jf.add(tflat);
+        
+        //3. Number Plate
+        lblvehicleno = new JLabel("VEHICLE NUMBER :- ");
+        lblvehicleno.setBounds(20, 200, 200, 30);
+        lblvehicleno.setFont(new Font("Times_Now_Roman", Font.PLAIN, 20));
+        lblvehicleno.setForeground(Color.BLACK);
+        jf.add(lblvehicleno);
 
-        //3.Vehicle Type
-        lblvehicletype= new JLabel("VEHICLE TYPE :- ");
-        lblvehicletype.setBounds(20, 200, 200, 30);
-        lblvehicletype.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
-        lblvehicletype.setForeground(Color.BLACK);
-        jf.add(lblvehicletype);
-
-        tvehicletype = new JTextField();
-        tvehicletype.setBounds(320, 200, 240, 30);
-        tvehicletype.setFont(new Font("serif", Font.PLAIN, 20));
-        tvehicletype.setForeground(Color.BLACK);
-        jf.add(tvehicletype);
-
+        tvehicleno = new JTextField();
+        tvehicleno.setBounds(320, 200, 240, 30);
+        tvehicleno.setFont(new Font("serif", Font.PLAIN, 20));
+        tvehicleno.setForeground(Color.BLACK);
+        jf.add(tvehicleno);
+        
         //4. Parking Spot Number
         lblparkingspotno = new JLabel("PARKING SPOT NO :- ");
         lblparkingspotno.setBounds(20, 250, 250, 30);
@@ -79,19 +79,19 @@ public class AssignParking implements ActionListener
         tparkingspotno.setForeground(Color.BLACK);
         jf.add(tparkingspotno);
 
-        //5. Number Plate
-        lblvehicleno = new JLabel("VEHICLE NUMBER :- ");
-        lblvehicleno.setBounds(20, 300, 250, 30);
-        lblvehicleno.setFont(new Font("Times_Now_Roman", Font.PLAIN, 20));
-        lblvehicleno.setForeground(Color.BLACK);
-        jf.add(lblvehicleno);
+        //5.Vehicle Type
+        lblvehicletype= new JLabel("VEHICLE TYPE :- ");
+        lblvehicletype.setBounds(20, 300, 250, 30);     
+        lblvehicletype.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
+        lblvehicletype.setForeground(Color.BLACK);
+        jf.add(lblvehicletype);
 
-        tvehicleno = new JTextField();
-        tvehicleno.setBounds(320, 300, 240, 30);
-        tvehicleno.setFont(new Font("serif", Font.PLAIN, 20));
-        tvehicleno.setForeground(Color.BLACK);
-        jf.add(tvehicleno);
-        
+        tvehicletype = new JTextField();
+        tvehicletype.setBounds(320, 300, 240, 30);    
+        tvehicletype.setFont(new Font("serif", Font.PLAIN, 20));
+        tvehicletype.setForeground(Color.BLACK);
+        jf.add(tvehicletype);
+
         //Assign Parking Button
         bAssignParking=new JButton("ASSIGN PARKING");
         bAssignParking.setBounds(165,350,200,30);

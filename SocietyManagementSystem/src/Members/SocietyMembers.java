@@ -1,9 +1,11 @@
 package Members;
 import Databases.Databasec1;
+import Databases.MembersDao;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
+import java.util.ArrayList;
 import societymanagementsystem.MainPage;
 public class SocietyMembers implements ActionListener
 {
@@ -41,7 +43,6 @@ public class SocietyMembers implements ActionListener
         lbldesignation.setFont(new Font("serif",Font.PLAIN,30));
         lbldesignation.setForeground(new Color(240,28,85));
         jf.add(lbldesignation);
-        
         
         lblchairman = new JLabel("CHAIRMAN");
         lblchairman.setBounds(400,100,400,40);
@@ -201,84 +202,19 @@ public class SocietyMembers implements ActionListener
         jf.add(lblmem8_name); 
         
         //Set names
-        try 
-        {
-            Databasec1 c=new Databasec1();
-            ResultSet rs = c.s.executeQuery("select * from members;");
-            while(rs.next())
-            {
-                if(rs.getString("DESIGNATION").equals("CHAIRMAN"))
-                {
-                    chairman_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("SECRETARY"))
-                {
-                    sec_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("TREASURER"))
-                {
-                    treasurer_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("MEMBER 1"))
-                {
-                    mem1_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("MEMBER 2"))
-                {
-                    mem2_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("MEMBER 3"))
-                {
-                    mem3_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("MEMBER 4"))
-                {
-                    mem4_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("MEMBER 5"))
-                {
-                    mem5_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("MEMBER 6"))
-                {
-                    mem6_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("MEMBER 7"))
-                {
-                    mem7_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("DESIGNATION").equals("MEMBER 8"))
-                {
-                    mem8_name=rs.getString("NAME");
-                    continue;
-                }
-            }
-        } 
-        catch (Exception ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        lblchairman_name.setText(chairman_name);
-        lblsec_name.setText(sec_name);
-        lbltreasurer_name.setText(treasurer_name);
-        lblmem1_name.setText(mem1_name);
-        lblmem2_name.setText(mem2_name);
-        lblmem3_name.setText(mem3_name);
-        lblmem4_name.setText(mem4_name);
-        lblmem5_name.setText(mem5_name);
-        lblmem6_name.setText(mem6_name);
-        lblmem7_name.setText(mem7_name);
-        lblmem8_name.setText(mem8_name);
+        MembersDao membersdao=new MembersDao();
+        ArrayList<String> members=membersdao.setToDisplay();
+        lblchairman_name.setText(members.get(0));
+        lblsec_name.setText(members.get(1));
+        lbltreasurer_name.setText(members.get(2));
+        lblmem1_name.setText(members.get(3));
+        lblmem2_name.setText(members.get(4));
+        lblmem3_name.setText(members.get(5));
+        lblmem4_name.setText(members.get(6));
+        lblmem5_name.setText(members.get(7));
+        lblmem6_name.setText(members.get(8));
+        lblmem7_name.setText(members.get(9));
+        lblmem8_name.setText(members.get(10));
         
     }
     public void actionPerformed(ActionEvent ae)
