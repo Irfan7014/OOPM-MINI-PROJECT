@@ -12,9 +12,8 @@ class ViewDate implements ActionListener
     JTextField tdate;
     JButton bsearch,bback,bdone;
     JTable table;
-    int k=0;
     String column_names[]={"Name","Purpose","Phone","Flat","Date","Entry_Time","Exit Time","Watchman_Present","Gate","Vehicle_Num"};
-    ViewDate()
+    public ViewDate()
     {
         //Frame details
         jf=new JFrame("VIEW DETAILS");
@@ -82,44 +81,20 @@ class ViewDate implements ActionListener
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        try 
-        {
-            Databaseconn c=new Databaseconn();
-            ResultSet rs = c.s.executeQuery("select * from entries where Date='"+tdate.getText()+"';");
-            while(rs.next()) 
-            {
-                name = rs.getString("Name");
-                pur = rs.getString("Purpose");
-                ph = rs.getString("Phone");
-                flat = rs.getString("Flat");
-                date = rs.getString("Date");
-                entry = rs.getString("Entry_Time");
-                exit = rs.getString("Exit_Time");
-                watchman = rs.getString("Watchman_Present");
-                gate = rs.getString("Gate");
-                vehicle = rs.getString("Vehicle_Num");
-                model.addRow(new Object[]{name,pur,ph,flat,date,entry,exit,watchman,gate,vehicle});
-                k++;
-            }
-            if(k!=0)
-            {
-                frame.add(scroll);
-                frame.setResizable(false);
-                frame.setSize(1160,350);    
-                frame.setVisible(true);
-            }
-            if(k==0)
-            {
-                jf.dispose();
-                JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-        } 
-        catch (Exception ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        GateDao gatedao=new GateDao();
+        ArrayList<String> entries=gatedao.viewEntriesByDate(tdate.getText());
+        try{
+            model.addRow(new Object[]{entries.get(0),entries.get(1),entries.get(2),entries.get(3),entries.get(4),entries.get(5),entries.get(6),entries.get(7),entries.get(8),entries.get(9)});
+            frame.add(scroll);
+            frame.setResizable(false);
+            frame.setSize(1160,350);    
+            frame.setVisible(true);
         }
-        
+        catch(Exception e)
+        {
+            jf.dispose();
+            JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
+        }      
     }
     public void actionPerformed(ActionEvent ae)
     {
@@ -131,7 +106,7 @@ class ViewDate implements ActionListener
         if(ae.getSource()==bsearch)
         {
             jf.dispose();
-            ViewDate vd=new ViewDate();
+            new ViewDate();
             showTable();
         }
     }

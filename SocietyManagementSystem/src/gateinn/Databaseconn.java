@@ -6,7 +6,7 @@ public class Databaseconn {
     public Databaseconn(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            c=DriverManager.getConnection("jdbc:mysql:///gateinn","root","");
+            c=DriverManager.getConnection("jdbc:mysql:///society","root","");
             s=c.createStatement();
             
         }catch(Exception e){
