@@ -93,7 +93,6 @@ public class GateDao
         }
         return entries;
     }
-    
     public void addEntry(ArrayList<String> entry)
     {
         try
@@ -109,5 +108,24 @@ public class GateDao
         {
             e.printStackTrace();
         }
+    }
+    public int gateLogin(String username,String password)
+    {
+        try
+        {
+            Databaseconn c = new Databaseconn();
+            String q = "select * from login where username='"+username+"' and password='"+password+"'";
+            ResultSet rs = c.s.executeQuery(q); 
+            if(rs.next()){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

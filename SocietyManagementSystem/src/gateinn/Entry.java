@@ -229,12 +229,12 @@ public class Entry implements ActionListener
         if(ae.getSource()==bback)
         {
             jf.dispose();
-            Select s=new Select();
+            SelectWatchman s=new SelectWatchman();
         }
         if(ae.getSource()==bcancel)
         {
             jf.dispose();
-            Select s=new Select();
+            SelectWatchman s=new SelectWatchman();
         }
         if(ae.getSource()==baddexittime)
         {

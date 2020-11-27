@@ -91,24 +91,18 @@ public class GateinnLogin extends JFrame implements ActionListener
     {
         if(ae.getSource()==blogin)
         {
-            try{
-                Databaseconn c = new Databaseconn();
-                String u = tusername.getText();
-                String v = tpassword.getText();
-
-                String q = "select * from login where username='"+u+"' and password='"+v+"'";
-
-                ResultSet rs = c.s.executeQuery(q); 
-                if(rs.next()){
-                    Select mp=new Select();
-                    setVisible(false);
-                }else{
-                    setVisible(false);
-                    JOptionPane.showMessageDialog(null, "Invalid login");
-                    GateinnLogin l=new GateinnLogin();
-                }
-            }catch(Exception e){
-                e.printStackTrace();
+            GateDao gatedao=new GateDao();
+            int k=gatedao.gateLogin(tusername.getText(),tpassword.getText());
+            if(k==1)
+            {
+                SelectWatchman mp=new SelectWatchman();
+                setVisible(false);
+            }
+            else
+            {
+                setVisible(false);
+                JOptionPane.showMessageDialog(null, "Invalid login");
+                GateinnLogin l=new GateinnLogin();
             }
         }
         else if(ae.getSource()==bcancel)
@@ -119,7 +113,7 @@ public class GateinnLogin extends JFrame implements ActionListener
         else if(ae.getSource()==bforget)
         {
             dispose();
-            ForgetPassword fp=new ForgetPassword();
+            ResetPassword fp=new ResetPassword();
         }
     }
     public static void main(String args[]){

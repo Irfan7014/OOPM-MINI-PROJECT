@@ -193,7 +193,7 @@ public class AddExitTime implements ActionListener
         if(ae.getSource()==bview)
         {
             jf.dispose();
-            View_Visitors v=new View_Visitors();
+            ViewVisitors v=new ViewVisitors();
         }
         if(ae.getSource()==bback)
         {

@@ -6,7 +6,7 @@ import NoticesAndReportsAndServices.*;
 import Parking.*;
 import Residents.*;
 import gateinn.GateinnLogin;
-import gateinn.View_Visitors;
+import gateinn.ViewVisitors;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -225,7 +225,7 @@ public class MainPage implements ActionListener
         if(msg.equals("View Visitors"))
         {
             jf.dispose();
-            View_Visitors v=new View_Visitors();
+            ViewVisitors v=new ViewVisitors();
         }
         if(msg.equals("Launch GateINN Application"))
         {
