@@ -2,6 +2,7 @@ package Parking;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import societymanagementsystem.MainPage;
 public class AssignParking implements ActionListener
 {
@@ -9,6 +10,7 @@ public class AssignParking implements ActionListener
     JLabel lbltitle, lblowner, lblflat, lblvehicletype, lblparkingspotno, lblvehicleno;   //Created Labels
     JTextField towner, tflat, tvehicletype, tparkingspotno, tvehicleno;                  //Created TextFields
     JButton bcancel,bAssignParking;
+    ArrayList<Parking> parkingDetails=new ArrayList<Parking>();
     public AssignParking()
     {
         //Frame Details
@@ -36,7 +38,7 @@ public class AssignParking implements ActionListener
 
         towner = new JTextField();
         towner.setBounds(320, 100, 240, 30);
-        towner.setFont(new Font("serif", Font.PLAIN, 20));
+        towner.setFont(new Font("serif", Font.PLAIN, 25));
         towner.setForeground(Color.BLACK);
         jf.add(towner);
 
@@ -49,7 +51,7 @@ public class AssignParking implements ActionListener
 
         tflat = new JTextField();
         tflat.setBounds(320, 150, 240, 30);
-        tflat.setFont(new Font("serif", Font.PLAIN, 20));
+        tflat.setFont(new Font("serif", Font.PLAIN, 25));
         tflat.setForeground(Color.BLACK);
         jf.add(tflat);
         
@@ -62,7 +64,7 @@ public class AssignParking implements ActionListener
 
         tvehicleno = new JTextField();
         tvehicleno.setBounds(320, 200, 240, 30);
-        tvehicleno.setFont(new Font("serif", Font.PLAIN, 20));
+        tvehicleno.setFont(new Font("serif", Font.PLAIN, 25));
         tvehicleno.setForeground(Color.BLACK);
         jf.add(tvehicleno);
         
@@ -75,7 +77,7 @@ public class AssignParking implements ActionListener
 
         tparkingspotno = new JTextField();
         tparkingspotno.setBounds(320, 250, 240, 30);
-        tparkingspotno.setFont(new Font("serif", Font.PLAIN, 20));
+        tparkingspotno.setFont(new Font("serif", Font.PLAIN, 25));
         tparkingspotno.setForeground(Color.BLACK);
         jf.add(tparkingspotno);
 
@@ -88,7 +90,7 @@ public class AssignParking implements ActionListener
 
         tvehicletype = new JTextField();
         tvehicletype.setBounds(320, 300, 240, 30);    
-        tvehicletype.setFont(new Font("serif", Font.PLAIN, 20));
+        tvehicletype.setFont(new Font("serif", Font.PLAIN, 25));
         tvehicletype.setForeground(Color.BLACK);
         jf.add(tvehicletype);
 
@@ -110,6 +112,9 @@ public class AssignParking implements ActionListener
         bcancel.addActionListener(this);
         jf.add(bcancel);
         
+        Parking parking=new Parking();
+        parking.setFlat(tflat);
+        parking.setName(tname);
         jf.setVisible(true);
     }
     public void actionPerformed(ActionEvent ae)
@@ -121,8 +126,10 @@ public class AssignParking implements ActionListener
         }
         if(ae.getSource()==bAssignParking)
         {
+            
             jf.dispose();
             JOptionPane.showMessageDialog(jf, "PARKING "+tparkingspotno.getText()+" ASSIGNED TO "+towner.getText());
+            
             new AssignParking();
         }
         

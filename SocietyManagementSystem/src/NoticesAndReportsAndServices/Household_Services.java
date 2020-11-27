@@ -1,9 +1,11 @@
 package NoticesAndReportsAndServices;
 import Databases.Databasec1;
+import Databases.HouseholdServicesDao;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
+import java.util.ArrayList;
 import societymanagementsystem.MainPage;
 public class Household_Services implements ActionListener
 {
@@ -166,66 +168,17 @@ public class Household_Services implements ActionListener
         lblmaid_name.setFont(new Font("serif",Font.PLAIN,30));
         lblmaid_name.setForeground(new Color(0,0,0));
         jf.add(lblmaid_name);
-        try
-        {
-            Databasec1 c=new Databasec1();
-            ResultSet rs = c.s.executeQuery("select * from services;");
-            while(rs.next())
-            {
-                if(rs.getString("SERVICE").equals("ELECTRICIAN"))
-                {
-                    electrician_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("PLUMBER"))
-                {
-                    plumber_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("PAINTER"))
-                {
-                    painter_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("BABY SITTER"))
-                {
-                    babysitter_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("LAUNDARY"))
-                {
-                    laundary_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("TUTOR"))
-                {
-                    tutor_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("CARPENTER"))
-                {
-                    carpenter_name=rs.getString("NAME");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("MAID"))
-                {
-                    maid_name=rs.getString("NAME");
-                    continue;
-                }
-            }
-        }
-        catch (Exception ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        lblelectrician_name.setText(electrician_name);
-        lblplumber_name.setText(plumber_name);
-        lblpainter_name.setText(painter_name);
-        lblbabysitter_name.setText(babysitter_name);
-        lbllaundary_name.setText(laundary_name);
-        lbltutor_name.setText(tutor_name);
-        lblcarpenter_name.setText(carpenter_name);
-        lblmaid_name.setText(maid_name);        
+        HouseholdServicesDao householddao=new HouseholdServicesDao();
+        ArrayList<String> servicesName=householddao.showHouseholdServicesName();
+        
+        lblelectrician_name.setText(servicesName.get(0));
+        lblplumber_name.setText(servicesName.get(1));
+        lblpainter_name.setText(servicesName.get(2));
+        lblbabysitter_name.setText(servicesName.get(3));
+        lbllaundary_name.setText(servicesName.get(4));
+        lbltutor_name.setText(servicesName.get(5));
+        lblcarpenter_name.setText(servicesName.get(6));
+        lblmaid_name.setText(servicesName.get(7));        
     }
     
     public void show_contacts()
@@ -278,66 +231,16 @@ public class Household_Services implements ActionListener
         lblmaid_contact.setFont(new Font("serif",Font.PLAIN,30));
         lblmaid_contact.setForeground(new Color(0,0,0));
         jf.add(lblmaid_contact);
-        try
-        {
-            Databasec1 c=new Databasec1();
-            ResultSet rs = c.s.executeQuery("select * from services;");
-            while(rs.next())
-            {
-                if(rs.getString("SERVICE").equals("ELECTRICIAN"))
-                {
-                    electrician_contact=rs.getString("CONTACT");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("PLUMBER"))
-                {
-                    plumber_contact=rs.getString("CONTACT");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("PAINTER"))
-                {
-                    painter_contact=rs.getString("CONTACT");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("BABY SITTER"))
-                {
-                    babysitter_contact=rs.getString("CONTACT");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("LAUNDARY"))
-                {
-                    laundary_contact=rs.getString("CONTACT");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("TUTOR"))
-                {
-                    tutor_contact=rs.getString("CONTACT");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("CARPENTER"))
-                {
-                    carpenter_contact=rs.getString("CONTACT");
-                    continue;
-                }
-                if(rs.getString("SERVICE").equals("MAID"))
-                {
-                    maid_contact=rs.getString("CONTACT");
-                    continue;
-                }
-            }
-        }
-        catch (Exception ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        lblelectrician_contact.setText(electrician_contact);
-        lblplumber_contact.setText(plumber_contact);
-        lblpainter_contact.setText(painter_contact);
-        lblbabysitter_contact.setText(babysitter_contact);
-        lbllaundary_contact.setText(laundary_contact);
-        lbltutor_contact.setText(tutor_contact);
-        lblcarpenter_contact.setText(carpenter_contact);
-        lblmaid_contact.setText(maid_contact);
+        HouseholdServicesDao householddao=new HouseholdServicesDao();
+        ArrayList<String> serviceContact=householddao.showHouseholdServicesContact();
+        lblelectrician_contact.setText(serviceContact.get(0));
+        lblplumber_contact.setText(serviceContact.get(1));
+        lblpainter_contact.setText(serviceContact.get(2));
+        lblbabysitter_contact.setText(serviceContact.get(3));
+        lbllaundary_contact.setText(serviceContact.get(4));
+        lbltutor_contact.setText(serviceContact.get(5));
+        lblcarpenter_contact.setText(serviceContact.get(6));
+        lblmaid_contact.setText(serviceContact.get(7));
     }
     
     public void actionPerformed(ActionEvent ae)
