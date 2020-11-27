@@ -143,41 +143,25 @@ class ResetPassword implements ActionListener
 
         if(ae.getSource()==bcheck)
         {
-            try
+            GateDao gatedao=new GateDao();
+            int k=gatedao.checkKeyID(tid.getText());
+            if(k==0)
             {
-                Databaseconn c=new Databaseconn();
-                String s=tid.getText();
-                String str = "select * from login where KEYID ='"+s+"';";
-                ResultSet rs = c.s.executeQuery(str);
-                int i=0;
-                if(rs.next())
-                {
-                    String keyid = rs.getString(3);
-                    if(keyid.equals(s))
-                        i=1;
-                }
-                if(i==0)
-                {
-                    jf.dispose();
-                    JOptionPane.showMessageDialog(null,"INCORRECT KEY ID");
-                    ResetPassword fp=new ResetPassword();
-                }
-                if(i==1)
-                {
-                    lblnew.setVisible(true);
-                    lblconfirm.setVisible(true);
-                    lblkeyid.setVisible(true);
-                    tnew.setVisible(true);
-                    tconfirm.setVisible(true);
-                    tkeyid.setVisible(true);
-                    bchange.setVisible(true); 
-                    tkeyid.setText(generateString(10));
-                    tkeyid.setEditable(false);
-                }
+                jf.dispose();
+                JOptionPane.showMessageDialog(null,"INCORRECT KEY ID");
+                ResetPassword fp=new ResetPassword();
             }
-            catch(Exception e)
+            if(k==1)
             {
-                e.printStackTrace();
+                lblnew.setVisible(true);
+                lblconfirm.setVisible(true);
+                lblkeyid.setVisible(true);
+                tnew.setVisible(true);
+                tconfirm.setVisible(true);
+                tkeyid.setVisible(true);
+                bchange.setVisible(true); 
+                tkeyid.setText(generateString(10));
+                tkeyid.setEditable(false);
             }      
         }
         if(ae.getSource()==bchange)
@@ -185,34 +169,9 @@ class ResetPassword implements ActionListener
             String newpassword = tnew.getText();
             String confirmpassword=tconfirm.getText();
             String newkeyid=tkeyid.getText();
-            try
-            {
-                Databaseconn c=new Databaseconn();
-                if(newpassword.equals(confirmpassword))
-                {
-                    String str1="update login set PASSWORD='"+newpassword+"',KEYID= '"+newkeyid+"';";
-                    c.s.executeUpdate(str1);
-                    String str2="select * from login;";
-                    ResultSet rs1=c.s.executeQuery(str2);
-                    String displaykeyid="";
-                    while(rs1.next()){
-                        displaykeyid=rs1.getString(3);
-                    }
-                    jf.dispose();
-                    JOptionPane.showMessageDialog(null,"PASSWORD CHANGED SUCCESSFULLY AND NEW KEYID = "+displaykeyid);
-                    GateinnLogin l=new GateinnLogin();
-                }
-                else
-                {
-                    jf.dispose();
-                    JOptionPane.showMessageDialog(null,"NEW PASSWORD DOES NOT MATCH");
-                    ResetPassword fp=new ResetPassword();
-                }
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }       
+            jf.dispose();
+            GateDao gatedao=new GateDao();
+            gatedao.changePassword(newpassword, confirmpassword, newkeyid);
         }
 
     }

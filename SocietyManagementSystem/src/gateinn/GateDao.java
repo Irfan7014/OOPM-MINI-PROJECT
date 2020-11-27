@@ -35,6 +35,7 @@ public class GateDao
         }
         return entries;
     }
+    
     public ArrayList<EntryObject> viewEntriesByName(String name)
     {
         ArrayList<EntryObject> entries=new ArrayList<EntryObject>();
@@ -64,6 +65,7 @@ public class GateDao
         }
         return entries;
     }
+    
     public ArrayList<EntryObject> viewEntriesByPhone(String phno)
     {
         ArrayList<EntryObject> entries=new ArrayList<EntryObject>();
@@ -93,6 +95,7 @@ public class GateDao
         }
         return entries;
     }
+    
     public void addEntry(ArrayList<String> entry)
     {
         try
@@ -109,12 +112,13 @@ public class GateDao
             e.printStackTrace();
         }
     }
+    
     public int gateLogin(String username,String password)
     {
         try
         {
             Databaseconn c = new Databaseconn();
-            String q = "select * from login where username='"+username+"' and password='"+password+"'";
+            String q = "select * from gate_login where username='"+username+"' and password='"+password+"'";
             ResultSet rs = c.s.executeQuery(q); 
             if(rs.next()){
                 return 1;
@@ -127,5 +131,93 @@ public class GateDao
             e.printStackTrace();
         }
         return 0;
+    }
+    
+    public int checkKeyID(String id)
+    {
+        int k=0;
+        try
+        {
+            Databaseconn c=new Databaseconn();
+            String str = "select * from gate_login where KEYID ='"+id+"';";
+            ResultSet rs = c.s.executeQuery(str);
+            if(rs.next())
+            {
+                String keyid = rs.getString(3);
+                System.out.println(keyid+"  "+id);
+                if(keyid.equals(id))
+                    k=1;
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return k;
+    }
+    
+    public void changePassword(String newpassword,String confirmpassword,String newkeyid)
+    {
+        String displayid=newkeyid;
+        try
+        {
+            Databaseconn c=new Databaseconn();
+            if(newpassword.equals(confirmpassword))
+            {
+                String str1="update gate_login set PASSWORD='"+newpassword+"',KEYID= '"+newkeyid+"';";
+                c.s.executeUpdate(str1);
+                JOptionPane.showMessageDialog(null,"PASSWORD CHANGED SUCCESSFULLY AND NEW KEYID = "+displayid);
+                GateinnLogin l=new GateinnLogin();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"NEW PASSWORD DOES NOT MATCH");
+                ResetPassword fp=new ResetPassword();
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public boolean checkForExitTime(String name,String phone,String date,String entryTime)
+    {
+        boolean k=false;
+        try
+        {
+            Databaseconn c=new Databaseconn();
+            String q="select * from entries where name='"+name+"' and phone='"+phone+"' and date='"+date+"' and Entry_Time='"+entryTime+"' and Exit_Time=' ';";
+            ResultSet rs = c.s.executeQuery(q);
+            if(rs.next())
+            {
+                if(rs.getString(1).equals(name) && rs.getString(3).equals(phone) && rs.getString(6).equals(entryTime) && rs.getString(5).equals(date))
+                {
+                    k=true;
+                    
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return k;
+    }
+    
+    public void addExitTime(String name,String phone,String date,String entryTime,String exitTime)
+    {
+        try
+        {
+            String s=exitTime.substring(1,exitTime.length());
+            Databaseconn c = new Databaseconn();
+            String str = "update entries set Exit_Time='"+exitTime+"' where Name='"+name+"' and Entry_Time='"+entryTime+"' and Phone='"+phone+"'and Date='"+date+"';";
+            c.s.executeUpdate(str);
+            JOptionPane.showMessageDialog(null,"SUCCESSFULLY UPDATED");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

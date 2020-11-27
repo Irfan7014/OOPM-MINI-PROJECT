@@ -9,8 +9,8 @@ public class AddExitTime implements ActionListener
     JLabel lbltitle,lblname,lblphone,lbldate,lblentrytime,lblexittime;
     JTextField tname,tphone,tdate,tentrytime,texittime;
     JButton bupdate,bback,bview,bsearch,bcancel;
-    int k=0;
-    String n,p,d,et,watchman,gate;
+    boolean check=false;
+    String name,phone,date,entryTime,watchman,gate;
     public AddExitTime(String w,String g)
     {
         watchman=w;
@@ -150,39 +150,28 @@ public class AddExitTime implements ActionListener
     public void Search()
     {
         String q;
-        n=tname.getText();
-        p=tphone.getText();
-        d=tdate.getText();
-        et=tentrytime.getText();
-        try
+        name=tname.getText();
+        phone=tphone.getText();
+        date=tdate.getText();
+        entryTime=tentrytime.getText();
+        GateDao gatedao=new GateDao();
+        check=gatedao.checkForExitTime(name, phone, date, entryTime);
+        if(check)
         {
-            Databaseconn c=new Databaseconn();
-            q="select * from entries where name='"+n+"' and phone='"+p+"' and date='"+d+"' and Entry_Time='"+et+"' and Exit_Time=' ';";
-            ResultSet rs = c.s.executeQuery(q);
-            if(rs.next())
-            {
-                if(rs.getString(1).equals(n) && rs.getString(3).equals(p) && rs.getString(6).equals(et))
-                {
-                    k=1;
-                    lblexittime.setVisible(true);
-                    texittime.setVisible(true);
-                    bupdate.setVisible(true);
-                    bback.setVisible(true);
-                    bview.setVisible(true);
-                }
-            }
-            if(k==0)
-            {
-                jf.dispose();
-                JOptionPane.showMessageDialog(null,"NO SUCH VISITOR FOUND");
-                AddExitTime aet=new AddExitTime(watchman,gate);
-            }
+            lblexittime.setVisible(true);
+            texittime.setVisible(true);
+            bupdate.setVisible(true);
+            bback.setVisible(true);
+            bview.setVisible(true);
         }
-        catch(Exception e)
+        if(!check)
         {
-            e.printStackTrace();
-        } 
+            jf.dispose();
+            JOptionPane.showMessageDialog(null,"NO SUCH VISITOR FOUND");
+            AddExitTime aet=new AddExitTime(watchman,gate);
+        }
     }
+    
     public void actionPerformed(ActionEvent ae)
     {
         if(ae.getSource()==bcancel)
@@ -204,22 +193,12 @@ public class AddExitTime implements ActionListener
         {
             Search();
         }
-        if(ae.getSource()==bupdate && k==1)
+        if(ae.getSource()==bupdate && check)
         {
-            try
-            {
-                String s=texittime.getText().substring(1,texittime.getText().length());
-                Databaseconn c = new Databaseconn();
-                String str = "update entries set Exit_Time='"+s+"' where Name='"+n+"' and Entry_Time='"+et+"' and Phone='"+p+"'and Date='"+d+"';";
-                c.s.executeUpdate(str);
-                JOptionPane.showMessageDialog(null,"SUCCESSFULLY UPDATED");
-                jf.dispose();
-                AddExitTime aet=new AddExitTime(watchman,gate);
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }            
+            GateDao gatedao=new GateDao();
+            gatedao.addExitTime(name,phone,date,entryTime,texittime.getText()); 
+            jf.dispose();
+            AddExitTime aet=new AddExitTime(watchman,gate);            
         }
     }
 }
