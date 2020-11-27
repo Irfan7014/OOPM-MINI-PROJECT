@@ -21,7 +21,6 @@ public class ParkingDao
         } 
         catch (SQLException ex) 
         {
-            k=false;
             System.out.println("Invalid SQLException");
         }
         return k;
