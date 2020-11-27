@@ -1,4 +1,5 @@
 package Parking;
+import Databases.ParkingDao;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -10,7 +11,7 @@ public class AssignParking implements ActionListener
     JLabel lbltitle, lblowner, lblflat, lblvehicletype, lblparkingspotno, lblvehicleno;   //Created Labels
     JTextField towner, tflat, tvehicletype, tparkingspotno, tvehicleno;                  //Created TextFields
     JButton bcancel,bAssignParking;
-    ArrayList<Parking> parkingDetails=new ArrayList<Parking>();
+    Parking parking;
     public AssignParking()
     {
         //Frame Details
@@ -112,9 +113,12 @@ public class AssignParking implements ActionListener
         bcancel.addActionListener(this);
         jf.add(bcancel);
         
-        Parking parking=new Parking();
-        parking.setFlat(tflat);
-        parking.setName(tname);
+        parking=new Parking();
+        parking.setFlat(tflat.getText());
+        parking.setName(towner.getText());
+        parking.setVehicleNum(tvehicleno.getText());
+        parking.setParkingSpot(tparkingspotno.getText());
+        parking.setVehicleType(tvehicletype.getText());
         jf.setVisible(true);
     }
     public void actionPerformed(ActionEvent ae)
@@ -128,11 +132,18 @@ public class AssignParking implements ActionListener
         {
             
             jf.dispose();
-            JOptionPane.showMessageDialog(jf, "PARKING "+tparkingspotno.getText()+" ASSIGNED TO "+towner.getText());
-            
-            new AssignParking();
-        }
-        
+            ParkingDao parkingdao=new ParkingDao();
+            boolean check=parkingdao.checkReservedParking(Integer.parseInt(tparkingspotno.getText()));
+            if(!check)
+            {
+                parkingdao.assignParkingToResident(parking);
+                JOptionPane.showMessageDialog(jf, "PARKING "+tparkingspotno.getText()+" ASSIGNED TO "+towner.getText());
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"The Parking Is Already Reserved");
+            }
+        } 
     }
     public static void main(String args[])
     {
