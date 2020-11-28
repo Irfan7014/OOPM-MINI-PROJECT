@@ -1,4 +1,5 @@
 package Residents;
+import Databases.ResidentsDao;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -7,8 +8,8 @@ public class AddResidents implements ActionListener
 {
     JFrame jf;
     JLabel lbltitle,lblowner,lblBuilding,lblflatno,lblDOB,lbloccupation,lblarriving_year,lbltotalfamilymem,lblmaritalstatus,lblRentOrOwner;
-    JTextField towner,tBuilding,tflatno,tDOB,toccupation,tarriving_year,ttotalfamilymem;
-    JCheckBox jcbmarried,jcbsingle,jcbowner,jcbrent;
+    JTextField towner,tBuilding,tflatno,tDOB,toccupation,tarrival_year,ttotalfamilymem;
+    JRadioButton jrbMarried,jrbSingle,jrbOwner,jrbRent;
     ButtonGroup G1,G2;
     JButton bback,bAddResidents;
     public AddResidents()
@@ -101,11 +102,11 @@ public class AddResidents implements ActionListener
         lblarriving_year.setForeground(Color.BLACK);
         jf.add(lblarriving_year);
         
-        tarriving_year=new JTextField();
-        tarriving_year.setBounds(345,345,280,40);
-        tarriving_year.setFont(new Font("serif",Font.PLAIN,20));
-        tarriving_year.setForeground(Color.BLACK);
-        jf.add(tarriving_year);
+        tarrival_year=new JTextField();
+        tarrival_year.setBounds(345,345,280,40);
+        tarrival_year.setFont(new Font("serif",Font.PLAIN,20));
+        tarrival_year.setForeground(Color.BLACK);
+        jf.add(tarrival_year);
         
         //7.Total Family Members
         lbltotalfamilymem = new JLabel("TOTAL FAMILY MEMBERS: ");
@@ -127,17 +128,17 @@ public class AddResidents implements ActionListener
         lblmaritalstatus.setForeground(Color.BLACK);
         jf.add(lblmaritalstatus);
         
-        jcbsingle=new JCheckBox("SINGLE");
-        jcbsingle.setBounds(345,445,140,40);
-        jcbsingle.setFont(new Font("serif",Font.PLAIN,25));
-        jcbsingle.setForeground(Color.BLACK);
-        jf.add(jcbsingle);
+        jrbSingle=new JRadioButton("SINGLE");
+        jrbSingle.setBounds(345,445,140,40);
+        jrbSingle.setFont(new Font("serif",Font.PLAIN,25));
+        jrbSingle.setForeground(Color.BLACK);
+        jf.add(jrbSingle);
         
-        jcbmarried=new JCheckBox("MARRIED");
-        jcbmarried.setBounds(490,445,200,40);
-        jcbmarried.setFont(new Font("serif",Font.PLAIN,25));
-        jcbmarried.setForeground(Color.BLACK);
-        jf.add(jcbmarried);
+        jrbMarried=new JRadioButton("MARRIED");
+        jrbMarried.setBounds(490,445,200,40);
+        jrbMarried.setFont(new Font("serif",Font.PLAIN,25));
+        jrbMarried.setForeground(Color.BLACK);
+        jf.add(jrbMarried);
         
         //9.Rent or Owner
         lblRentOrOwner = new JLabel("RENTED/OWNER: ");
@@ -146,17 +147,17 @@ public class AddResidents implements ActionListener
         lblRentOrOwner.setForeground(Color.BLACK);
         jf.add(lblRentOrOwner);
         
-        jcbowner=new JCheckBox("OWNER");
-        jcbowner.setBounds(345,495,140,40);
-        jcbowner.setFont(new Font("serif",Font.PLAIN,25));
-        jcbowner.setForeground(Color.BLACK);
-        jf.add(jcbowner);
+        jrbOwner=new JRadioButton("OWNER");
+        jrbOwner.setBounds(345,495,140,40);
+        jrbOwner.setFont(new Font("serif",Font.PLAIN,25));
+        jrbOwner.setForeground(Color.BLACK);
+        jf.add(jrbOwner);
         
-        jcbrent=new JCheckBox("RENT");
-        jcbrent.setBounds(490,495,200,40);
-        jcbrent.setFont(new Font("serif",Font.PLAIN,25));
-        jcbrent.setForeground(Color.BLACK);
-        jf.add(jcbrent);
+        jrbRent=new JRadioButton("RENT");
+        jrbRent.setBounds(490,495,200,40);
+        jrbRent.setFont(new Font("serif",Font.PLAIN,25));
+        jrbRent.setForeground(Color.BLACK);
+        jf.add(jrbRent);
         
         //Add Residents Button
         bAddResidents=new JButton("ADD RESIDENT");
@@ -175,12 +176,12 @@ public class AddResidents implements ActionListener
         jf.add(bback);
         
         G1=new ButtonGroup();
-        G1.add(jcbmarried);
-        G1.add(jcbsingle);
+        G1.add(jrbMarried);
+        G1.add(jrbSingle);
         
         G2=new ButtonGroup();
-        G2.add(jcbowner);
-        G2.add(jcbrent);
+        G2.add(jrbOwner);
+        G2.add(jrbRent);
         
         bAddResidents.addActionListener(this);
         bback.addActionListener(this);
@@ -191,17 +192,34 @@ public class AddResidents implements ActionListener
         if(ae.getSource()==bback)
         {
             jf.dispose();
-            MainPage mp=new MainPage();
+            new MainPage();
         }
         if(ae.getSource()==bAddResidents)
         {
             jf.dispose();
-            JOptionPane.showMessageDialog(jf,"THE RESIDENT WAS SUCCESSFULLY ADDED!");
+            Residents resident=new Residents();
+            resident.setName(towner.getText());
+            resident.setBuildingNum(tBuilding.getText());
+            resident.setFlatNum(tflatno.getText());
+            resident.setDOB(tDOB.getText());
+            resident.setOccupation(toccupation.getText());
+            resident.setYearOfArrival(Integer.parseInt(tarrival_year.getText()));
+            resident.setTotalMembers(Integer.parseInt(ttotalfamilymem.getText()));
+            if(jrbMarried.isSelected())
+                resident.setMaritalStatus("MARRIED");
+            if(jrbSingle.isSelected())
+                resident.setMaritalStatus("SINGLE");
+            if(jrbOwner.isSelected())
+                resident.setRentOrOwner("OWNER");
+            if(jrbRent.isSelected())
+                resident.setRentOrOwner("RENT");
+            ResidentsDao residentDao=new ResidentsDao();
+            residentDao.addResidents(resident);
         }
     }
         
     public static void main(String args[])
     {
-        AddResidents ar=new AddResidents();
+        new AddResidents();
     }
 }
