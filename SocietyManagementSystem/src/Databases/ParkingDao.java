@@ -1,8 +1,6 @@
 package Databases;
 
 import Parking.Parking;
-import gateinn.Databaseconn;
-import gateinn.EntryObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,7 +49,7 @@ public class ParkingDao
         ArrayList<Parking> parkingDetails=new ArrayList<Parking>();
          try 
         {
-            Databaseconn c=new Databaseconn();
+            Databasec1 c=new Databasec1();
             ResultSet rs = c.s.executeQuery("SELECT * FROM PARKING;");
             while(rs.next()) 
             {

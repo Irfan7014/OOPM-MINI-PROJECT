@@ -1,5 +1,6 @@
 package gateinn;
 
+import Databases.Databasec1;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -11,7 +12,7 @@ public class GateDao
         ArrayList<EntryObject> entries=new ArrayList<EntryObject>();
         try 
         {
-            Databaseconn c=new Databaseconn();
+            Databasec1 c=new Databasec1();
             ResultSet rs = c.s.executeQuery("select * from entries where Date='"+date+"';");
             while(rs.next()) 
             {
@@ -41,7 +42,7 @@ public class GateDao
         ArrayList<EntryObject> entries=new ArrayList<EntryObject>();
         try 
         {
-            Databaseconn c=new Databaseconn();
+            Databasec1 c=new Databasec1();
             ResultSet rs = c.s.executeQuery("select * from entries where Name='"+name+"';");
             while(rs.next()) 
             {
@@ -71,7 +72,7 @@ public class GateDao
         ArrayList<EntryObject> entries=new ArrayList<EntryObject>();
         try 
         {
-            Databaseconn c=new Databaseconn();
+            Databasec1 c=new Databasec1();
             ResultSet rs = c.s.executeQuery("select * from entries where Phone='"+phno+"';");
             while(rs.next()) 
             {
@@ -100,7 +101,7 @@ public class GateDao
     {
         try
         {
-            Databaseconn c=new Databaseconn();
+            Databasec1 c=new Databasec1();
             entry.get(0);
             String q="insert into Entries (Name, Purpose, Phone, Flat, Date, Entry_Time, Exit_Time, Watchman_Present, Gate, Vehicle_Num) values ('"+entry.get(0)+"',"+"'"+entry.get(1)+"',"+"'"+entry.get(2)+"',"+"'"+entry.get(3)+"',"+"'"+entry.get(4)+"',"+"'"+entry.get(5)+"',"+"'"+entry.get(6)+"',"+"'"+entry.get(7)+"',"+"'"+entry.get(8)+"',"+"'"+entry.get(9)+"')";
             c.s.executeUpdate(q);
@@ -117,7 +118,7 @@ public class GateDao
     {
         try
         {
-            Databaseconn c = new Databaseconn();
+            Databasec1 c = new Databasec1();
             String q = "select * from gate_login where username='"+username+"' and password='"+password+"'";
             ResultSet rs = c.s.executeQuery(q); 
             if(rs.next()){
@@ -138,7 +139,7 @@ public class GateDao
         int k=0;
         try
         {
-            Databaseconn c=new Databaseconn();
+            Databasec1 c=new Databasec1();
             String str = "select * from gate_login where KEYID ='"+id+"';";
             ResultSet rs = c.s.executeQuery(str);
             if(rs.next())
@@ -161,7 +162,7 @@ public class GateDao
         String displayid=newkeyid;
         try
         {
-            Databaseconn c=new Databaseconn();
+            Databasec1 c=new Databasec1();
             if(newpassword.equals(confirmpassword))
             {
                 String str1="update gate_login set PASSWORD='"+newpassword+"',KEYID= '"+newkeyid+"';";
@@ -186,7 +187,7 @@ public class GateDao
         boolean k=false;
         try
         {
-            Databaseconn c=new Databaseconn();
+            Databasec1 c=new Databasec1();
             String q="select * from entries where name='"+name+"' and phone='"+phone+"' and date='"+date+"' and Entry_Time='"+entryTime+"' and Exit_Time=' ';";
             ResultSet rs = c.s.executeQuery(q);
             if(rs.next())
@@ -210,7 +211,7 @@ public class GateDao
         try
         {
             String s=exitTime.substring(1,exitTime.length());
-            Databaseconn c = new Databaseconn();
+            Databasec1 c = new Databasec1();
             String str = "update entries set Exit_Time='"+exitTime+"' where Name='"+name+"' and Entry_Time='"+entryTime+"' and Phone='"+phone+"'and Date='"+date+"';";
             c.s.executeUpdate(str);
             JOptionPane.showMessageDialog(null,"SUCCESSFULLY UPDATED");

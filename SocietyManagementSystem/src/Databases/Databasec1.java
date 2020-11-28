@@ -13,7 +13,8 @@ public class Databasec1
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.out.println("SQLException");
+            e.printStackTrace();
         }
     }
 }
