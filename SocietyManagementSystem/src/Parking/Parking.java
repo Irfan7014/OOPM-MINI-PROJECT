@@ -35,6 +35,11 @@ public class Parking
         this.vehicleType = vehicleType;
     }
 
+    @Override
+    public String toString() {
+        return "Parking{" + "name=" + name + ", flat=" + flat + ", vehicleNum=" + vehicleNum + ", vehicleType=" + vehicleType + ", parkingSpot=" + parkingSpot + '}';
+    }
+
     public String getParkingSpot() {
         return parkingSpot;
     }

@@ -1,27 +1,33 @@
 package Databases;
 
 import Parking.Parking;
+import gateinn.Databaseconn;
+import gateinn.EntryObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ParkingDao 
 {
     public boolean checkReservedParking(int spot) 
     {
+        System.out.println(spot);
         boolean k=false;
         try 
         {
             Databasec1 c=new Databasec1();
-            ResultSet rs = c.s.executeQuery("select * from parking where PARKING_SPOT= '"+spot+"';");
-            if(rs.next())
+            ResultSet rs = c.s.executeQuery("select * from parking where PARKING_SPOT= "+spot+";");
+            while(rs.next())
             {
                 k=true;
+                break;
             }
         } 
         catch (SQLException ex) 
         {
             System.out.println("Invalid SQLException");
+            ex.printStackTrace();
         }
         return k;
     }
@@ -30,13 +36,51 @@ public class ParkingDao
         try
         {
             Databasec1 c=new Databasec1();
-            String q="INSERT INTO PARKING VALUES (NAME= '"+parking.getName()+"', FLAT='"+parking.getFlat()+"', VEHICLE_NUM='"+parking.getVehicleNum()+"', VEHICLE_TYPE='"+parking.getVehicleType()+"', PARKING_SPOT='"+parking.getParkingSpot()+"';";
+            String q="INSERT INTO PARKING (NAME, FLAT, VEHICLE_NUMBER, VEHICLE_TYPE, PARKING_SPOT) VALUES ('"+parking.getName()+"', "+"'"+parking.getFlat()+"', "+"'"+parking.getVehicleNum()+"', "+"'"+parking.getVehicleType()+"', "+"'"+parking.getParkingSpot()+"');";
             c.s.executeUpdate(q);
-            JOptionPane.showMessageDialog(null,"Parking Successfully Assigned");
+            JOptionPane.showMessageDialog(null, "PARKING "+parking.getParkingSpot()+" ASSIGNED TO "+parking.getName());
         } 
         catch (SQLException ex) 
         {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null,"Parking Reserved/Assignment Unsuccessful");
         }
+    }
+    public ArrayList<Parking> parkingDetails()
+    {
+        ArrayList<Parking> parkingDetails=new ArrayList<Parking>();
+         try 
+        {
+            Databaseconn c=new Databaseconn();
+            ResultSet rs = c.s.executeQuery("SELECT * FROM PARKING;");
+            while(rs.next()) 
+            {
+                Parking obj=new Parking();
+                obj.setName(rs.getString("NAME"));
+                obj.setFlat(rs.getString("FLAT"));
+                obj.setVehicleNum(rs.getString("VEHICLE_NUMBER"));
+                obj.setParkingSpot(rs.getString("PARKING_SPOT"));
+                obj.setVehicleType(rs.getString("VEHICLE_TYPE"));             
+                if(rs.getString("VEHICLE_TYPE").equals("FOUR WHEELER"))
+                    parkingDetails.add(obj);
+            }
+            rs = c.s.executeQuery("SELECT * FROM PARKING;");
+            while(rs.next()) 
+            {
+                Parking obj=new Parking();
+                obj.setName(rs.getString("NAME"));
+                obj.setFlat(rs.getString("FLAT"));
+                obj.setVehicleNum(rs.getString("VEHICLE_NUMBER"));
+                obj.setParkingSpot(rs.getString("PARKING_SPOT"));
+                obj.setVehicleType(rs.getString("VEHICLE_TYPE"));             
+                if(rs.getString("VEHICLE_TYPE").equals("TWO WHEELER"))
+                    parkingDetails.add(obj);
+            }
+        } 
+        catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return parkingDetails;
     }
 }

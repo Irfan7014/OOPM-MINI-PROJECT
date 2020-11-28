@@ -8,10 +8,10 @@ import societymanagementsystem.MainPage;
 public class AssignParking implements ActionListener
 {
     JFrame jf;
-    JLabel lbltitle, lblowner, lblflat, lblvehicletype, lblparkingspotno, lblvehicleno;   //Created Labels
-    JTextField towner, tflat, tvehicletype, tparkingspotno, tvehicleno;                  //Created TextFields
+    JLabel lbltitle, lblowner, lblvehicletype, lblflat, lblparkingspotno, lblvehicleno;   //Created Labels
+    JTextField towner, tflat, tparkingspotno, tvehicleno;                  //Created TextFields
     JButton bcancel,bAssignParking;
-    Parking parking;
+    JComboBox tvehicletype;
     public AssignParking()
     {
         //Frame Details
@@ -88,11 +88,13 @@ public class AssignParking implements ActionListener
         lblvehicletype.setFont(new Font("Times_New_Roman", Font.PLAIN, 20));
         lblvehicletype.setForeground(Color.BLACK);
         jf.add(lblvehicletype);
-
-        tvehicletype = new JTextField();
+        
+        String type[]={"FOUR WHEELER","TWO WHEELER"};
+        tvehicletype = new JComboBox(type);
         tvehicletype.setBounds(320, 300, 240, 30);    
         tvehicletype.setFont(new Font("serif", Font.PLAIN, 25));
         tvehicletype.setForeground(Color.BLACK);
+        tvehicletype.setSelectedIndex(0);
         jf.add(tvehicletype);
 
         //Assign Parking Button
@@ -113,12 +115,6 @@ public class AssignParking implements ActionListener
         bcancel.addActionListener(this);
         jf.add(bcancel);
         
-        parking=new Parking();
-        parking.setFlat(tflat.getText());
-        parking.setName(towner.getText());
-        parking.setVehicleNum(tvehicleno.getText());
-        parking.setParkingSpot(tparkingspotno.getText());
-        parking.setVehicleType(tvehicletype.getText());
         jf.setVisible(true);
     }
     public void actionPerformed(ActionEvent ae)
@@ -132,16 +128,25 @@ public class AssignParking implements ActionListener
         {
             
             jf.dispose();
+            Parking parking=new Parking();
+            parking.setFlat(tflat.getText());
+            parking.setName(towner.getText());
+            parking.setVehicleNum(tvehicleno.getText());
+            parking.setParkingSpot(tparkingspotno.getText());
+            parking.setVehicleType(tvehicletype.getSelectedItem().toString());
             ParkingDao parkingdao=new ParkingDao();
             boolean check=parkingdao.checkReservedParking(Integer.parseInt(tparkingspotno.getText()));
+            System.out.println(check);
             if(!check)
             {
                 parkingdao.assignParkingToResident(parking);
-                JOptionPane.showMessageDialog(jf, "PARKING "+tparkingspotno.getText()+" ASSIGNED TO "+towner.getText());
+                new AssignParking();
             }
             else
             {
+                jf.dispose();
                 JOptionPane.showMessageDialog(null,"The Parking Is Already Reserved");
+                new AssignParking();
             }
         } 
     }
