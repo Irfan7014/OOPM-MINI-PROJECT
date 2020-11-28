@@ -1,9 +1,6 @@
 package Parking;
 import Databases.ParkingDao;
-import gateinn.EntryObject;
-import gateinn.GateDao;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +17,7 @@ public class ViewParking
         frame = new JFrame("Database Search Result");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
+        frame.setLocation(50, 50);
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(column_names);
         table = new JTable();

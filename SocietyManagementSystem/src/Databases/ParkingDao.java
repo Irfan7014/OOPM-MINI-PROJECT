@@ -10,7 +10,6 @@ public class ParkingDao
 {
     public boolean checkReservedParking(int spot) 
     {
-        System.out.println(spot);
         boolean k=false;
         try 
         {
@@ -47,7 +46,7 @@ public class ParkingDao
     public ArrayList<Parking> parkingDetails()
     {
         ArrayList<Parking> parkingDetails=new ArrayList<Parking>();
-         try 
+        try 
         {
             Databasec1 c=new Databasec1();
             ResultSet rs = c.s.executeQuery("SELECT * FROM PARKING;");
@@ -80,5 +79,29 @@ public class ParkingDao
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return parkingDetails;
+    }
+    public void resetParking(String password)
+    {
+        boolean k=false;
+        try 
+        {
+            Databasec1 c=new Databasec1();
+            ResultSet rs = c.s.executeQuery("SELECT * FROM ADMINLOGIN WHERE PASSWORD= '"+password+"';");
+            while(rs.next()) 
+            {
+                k=true;
+                break;
+            }
+            if(k)
+            {
+                String q="DELETE FROM PARKING";
+                c.s.executeUpdate(q);
+                JOptionPane.showMessageDialog(null, "PARKING DETAILS RESET SUCCESSFUL!");
+            }
+        }
+        catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }        
     }
 }

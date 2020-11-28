@@ -3,14 +3,13 @@ import Databases.ParkingDao;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import societymanagementsystem.MainPage;
 public class AssignParking implements ActionListener
 {
     JFrame jf;
     JLabel lbltitle, lblowner, lblvehicletype, lblflat, lblparkingspotno, lblvehicleno;   //Created Labels
     JTextField towner, tflat, tparkingspotno, tvehicleno;                  //Created TextFields
-    JButton bcancel,bAssignParking;
+    JButton bback,bAssignParking,breset,bview;
     JComboBox tvehicletype;
     public AssignParking()
     {
@@ -96,10 +95,19 @@ public class AssignParking implements ActionListener
         tvehicletype.setForeground(Color.BLACK);
         tvehicletype.setSelectedIndex(0);
         jf.add(tvehicletype);
+        
+        //Reset all Parking
+        breset=new JButton("RESET ALL PARKING DETAILS");
+        breset.setBounds(350,10,330,30);
+        breset.setBackground(Color.RED);
+        breset.setForeground(Color.WHITE);
+        breset.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,18));
+        breset.addActionListener(this);
+        jf.add(breset);
 
         //Assign Parking Button
         bAssignParking=new JButton("ASSIGN PARKING");
-        bAssignParking.setBounds(165,350,200,30);
+        bAssignParking.setBounds(65,350,200,30);
         bAssignParking.setBackground(Color.BLACK);
         bAssignParking.setForeground(Color.WHITE);
         bAssignParking.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
@@ -107,22 +115,31 @@ public class AssignParking implements ActionListener
         jf.add(bAssignParking);
         
         //Cancel Button
-        bcancel=new JButton("CANCEL");
-        bcancel.setBounds(405,350,130,30);
-        bcancel.setBackground(Color.BLACK);
-        bcancel.setForeground(Color.WHITE);
-        bcancel.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
-        bcancel.addActionListener(this);
-        jf.add(bcancel);
+        bback=new JButton("BACK");
+        bback.setBounds(535,350,100,30);
+        bback.setBackground(Color.BLACK);
+        bback.setForeground(Color.WHITE);
+        bback.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
+        bback.addActionListener(this);
+        jf.add(bback);
+        
+        //View Button
+        bview=new JButton("VIEW PARKING DETAILS");
+        bview.setBounds(285,350,230,30);
+        bview.setBackground(Color.BLACK);
+        bview.setForeground(Color.WHITE);
+        bview.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
+        bview.addActionListener(this);
+        jf.add(bview);
         
         jf.setVisible(true);
     }
     public void actionPerformed(ActionEvent ae)
     {
-        if(ae.getSource()==bcancel)
+        if(ae.getSource()==bback)
         {
             jf.dispose();
-            MainPage mp=new MainPage();
+            new MainPage();
         }
         if(ae.getSource()==bAssignParking)
         {
@@ -149,6 +166,18 @@ public class AssignParking implements ActionListener
                 new AssignParking();
             }
         } 
+        if(ae.getSource()==breset)
+        {
+            String answer = JOptionPane.showInputDialog(null, "PLEASE ENTER THE PASSWORD TO CONFIRM!", "Input", JOptionPane.QUESTION_MESSAGE);
+            jf.dispose();
+            ParkingDao parkingDao=new ParkingDao();
+            parkingDao.resetParking(answer);
+            new AssignParking();
+        }
+        if(ae.getSource()==bview)
+        {
+            new ViewParkingViaAssign();
+        }
     }
     public static void main(String args[])
     {

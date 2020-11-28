@@ -6,8 +6,8 @@ import societymanagementsystem.MainPage;
 public class AddResidents implements ActionListener
 {
     JFrame jf;
-    JLabel lbltitle,lblowner,lblwing,lblflatno,lblage,lbloccupation,lblarriving_year,lbltotalfamilymem,lblmaritalstatus,lblRentOrOwner;
-    JTextField towner,twing,tflatno,tage,toccupation,tarriving_year,ttotalfamilymem;
+    JLabel lbltitle,lblowner,lblBuilding,lblflatno,lblDOB,lbloccupation,lblarriving_year,lbltotalfamilymem,lblmaritalstatus,lblRentOrOwner;
+    JTextField towner,tBuilding,tflatno,tDOB,toccupation,tarriving_year,ttotalfamilymem;
     JCheckBox jcbmarried,jcbsingle,jcbowner,jcbrent;
     ButtonGroup G1,G2;
     JButton bback,bAddResidents;
@@ -43,20 +43,20 @@ public class AddResidents implements ActionListener
         jf.add(towner);
         
         //2.Wing
-        lblwing = new JLabel("WING: ");
-        lblwing.setBounds(40,150,200,30);
-        lblwing.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
-        lblwing.setForeground(Color.BLACK);
-        jf.add(lblwing);
+        lblBuilding = new JLabel("BUILDING NUMBER: ");
+        lblBuilding.setBounds(40,150,200,30);
+        lblBuilding.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
+        lblBuilding.setForeground(Color.BLACK);
+        jf.add(lblBuilding);
         
-        twing=new JTextField();
-        twing.setBounds(345,145,280,40);
-        twing.setFont(new Font("serif",Font.PLAIN,20));
-        twing.setForeground(Color.BLACK);
-        jf.add(twing);
+        tBuilding=new JTextField();
+        tBuilding.setBounds(345,145,280,40);
+        tBuilding.setFont(new Font("serif",Font.PLAIN,20));
+        tBuilding.setForeground(Color.BLACK);
+        jf.add(tBuilding);
         
         //3.Flat No.
-        lblflatno = new JLabel("FLAT NO.: ");
+        lblflatno = new JLabel("FLAT NUMBER: ");
         lblflatno.setBounds(40,200,200,30);
         lblflatno.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
         lblflatno.setForeground(Color.BLACK);
@@ -69,17 +69,17 @@ public class AddResidents implements ActionListener
         jf.add(tflatno);
         
         //4.DOB
-        lblage = new JLabel("DATE OF BIRTH(DD/MM/YYYY):");
-        lblage.setBounds(40,250,320,30);
-        lblage.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
-        lblage.setForeground(Color.BLACK);
-        jf.add(lblage);
+        lblDOB = new JLabel("DATE OF BIRTH(DD/MM/YYYY):");
+        lblDOB.setBounds(40,250,320,30);
+        lblDOB.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
+        lblDOB.setForeground(Color.BLACK);
+        jf.add(lblDOB);
         
-        tage=new JTextField();
-        tage.setBounds(345,245,280,40);
-        tage.setFont(new Font("serif",Font.PLAIN,20));
-        tage.setForeground(Color.BLACK);
-        jf.add(tage);
+        tDOB=new JTextField();
+        tDOB.setBounds(345,245,280,40);
+        tDOB.setFont(new Font("serif",Font.PLAIN,20));
+        tDOB.setForeground(Color.BLACK);
+        jf.add(tDOB);
         
         //4.Occupation
         lbloccupation = new JLabel("OCCUPATION: ");
