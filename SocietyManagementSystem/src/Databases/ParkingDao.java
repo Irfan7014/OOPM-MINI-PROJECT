@@ -28,6 +28,7 @@ public class ParkingDao
         }
         return k;
     }
+    
     public void assignParkingToResident(Parking parking)
     {
         try
@@ -43,6 +44,7 @@ public class ParkingDao
             JOptionPane.showMessageDialog(null,"Parking Reserved/Assignment Unsuccessful");
         }
     }
+    
     public ArrayList<Parking> parkingDetails()
     {
         ArrayList<Parking> parkingDetails=new ArrayList<Parking>();
@@ -80,6 +82,7 @@ public class ParkingDao
         }
         return parkingDetails;
     }
+    
     public void resetParking(String password)
     {
         boolean k=false;
