@@ -11,7 +11,7 @@ public class AddResidents implements ActionListener
     JTextField towner,tBuilding,tflatno,tDOB,toccupation,tarrival_year,ttotalfamilymem;
     JRadioButton jrbMarried,jrbSingle,jrbOwner,jrbRent;
     ButtonGroup G1,G2;
-    JButton bback,bAddResidents;
+    JButton bback,bAddResidents,bView,bUpdate;
     public AddResidents()
     {
         //Frame Details
@@ -161,7 +161,7 @@ public class AddResidents implements ActionListener
         
         //Add Residents Button
         bAddResidents=new JButton("ADD RESIDENT");
-        bAddResidents.setBounds(230,600,250,40);
+        bAddResidents.setBounds(80,600,250,40);
         bAddResidents.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
         bAddResidents.setForeground(Color.WHITE);
         bAddResidents.setBackground(Color.BLACK);
@@ -169,11 +169,27 @@ public class AddResidents implements ActionListener
         
         //Back Button
         bback=new JButton("BACK");
-        bback.setBounds(520,600,100,40);
+        bback.setBounds(670,600,100,40);
         bback.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
         bback.setForeground(Color.WHITE);
         bback.setBackground(Color.BLACK);
         jf.add(bback);
+        
+        //View Button
+        bView=new JButton("VIEW");
+        bView.setBounds(540,600,100,40);
+        bView.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
+        bView.setForeground(Color.WHITE);
+        bView.setBackground(Color.BLACK);
+        jf.add(bView);
+        
+        //Update Button
+        bUpdate=new JButton("UPDATE");
+        bUpdate.setBounds(360,600,150,40);
+        bUpdate.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
+        bUpdate.setForeground(Color.WHITE);
+        bUpdate.setBackground(Color.BLACK);
+        jf.add(bUpdate);
         
         G1=new ButtonGroup();
         G1.add(jrbMarried);
@@ -214,10 +230,30 @@ public class AddResidents implements ActionListener
             if(jrbRent.isSelected())
                 resident.setRentOrOwner("RENT");
             ResidentsDao residentDao=new ResidentsDao();
-            residentDao.addResidents(resident);
+            boolean check=residentDao.checkResident(resident);
+            if(!check)
+            {
+                residentDao.addResidents(resident);
+                new AddResidents();
+            }
+            else
+            {
+                jf.dispose();
+                JOptionPane.showMessageDialog(null,"The Flat Already Has A Resident!");
+                new AddResidents();
+            }    
         }
-    }
-        
+        if(ae.getSource()==bView)
+        {
+            jf.dispose();
+            new ViewResidents();
+        }
+        if(ae.getSource()==bUpdate)
+        {
+            jf.dispose();
+            new UpdateResidents();
+        }
+    }   
     public static void main(String args[])
     {
         new AddResidents();

@@ -1,6 +1,7 @@
 package Databases;
 import Residents.AddResidents;
 import Residents.Residents;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 public class ResidentsDao 
@@ -22,5 +23,30 @@ public class ResidentsDao
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null,"ADDING RESIDENT TO THE DATABASE FAILED");
         }        
+    }
+    
+    public boolean checkResident(Residents resident)
+    {
+        boolean k=false;
+        try 
+        {
+            Databasec1 c=new Databasec1();
+            ResultSet rs = c.s.executeQuery("select * from residents where BUILDING_NUMBER= '"+resident.getBuildingNum()+"' and FLAT_NUMBER= '"+resident.getFlatNum()+"';");
+            while(rs.next())
+            {
+                k=true;
+                break;
+            }
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Invalid SQLException");
+            ex.printStackTrace();
+        }
+        return k;
+    }
+    public void updateResidentDetails(Residents resident)
+    {
+        
     }
 }
