@@ -9,7 +9,7 @@ public class AssignParking implements ActionListener
     JFrame jf;
     JLabel lbltitle, lblowner, lblvehicletype, lblflat, lblparkingspotno, lblvehicleno;   //Created Labels
     JTextField towner, tflat, tparkingspotno, tvehicleno;                  //Created TextFields
-    JButton bback,bAssignParking,breset,bview;
+    JButton bback,bAssignParking,breset,bview,bVacate;
     JComboBox tvehicletype;
     public AssignParking()
     {
@@ -19,7 +19,7 @@ public class AssignParking implements ActionListener
         jf.setResizable(false);
         jf.setLayout(null);
         jf.setLocation(200, 200);
-        jf.setSize(700, 450);
+        jf.setSize(750, 450);
 
         //Label and TextField Details
         //Title
@@ -107,7 +107,7 @@ public class AssignParking implements ActionListener
 
         //Assign Parking Button
         bAssignParking=new JButton("ASSIGN PARKING");
-        bAssignParking.setBounds(65,350,200,30);
+        bAssignParking.setBounds(20,350,200,30);
         bAssignParking.setBackground(Color.BLACK);
         bAssignParking.setForeground(Color.WHITE);
         bAssignParking.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
@@ -116,7 +116,7 @@ public class AssignParking implements ActionListener
         
         //Cancel Button
         bback=new JButton("BACK");
-        bback.setBounds(535,350,100,30);
+        bback.setBounds(630,350,100,30);
         bback.setBackground(Color.BLACK);
         bback.setForeground(Color.WHITE);
         bback.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
@@ -125,12 +125,21 @@ public class AssignParking implements ActionListener
         
         //View Button
         bview=new JButton("VIEW PARKING DETAILS");
-        bview.setBounds(285,350,230,30);
+        bview.setBounds(240,350,230,30);
         bview.setBackground(Color.BLACK);
         bview.setForeground(Color.WHITE);
         bview.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
         bview.addActionListener(this);
         jf.add(bview);
+        
+        //Vacate Button
+        bVacate=new JButton("VACATE");
+        bVacate.setBounds(490,350,120,30);
+        bVacate.setBackground(Color.BLACK);
+        bVacate.setForeground(Color.WHITE);
+        bVacate.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
+        bVacate.addActionListener(this);
+        jf.add(bVacate);
         
         jf.setVisible(true);
     }
@@ -177,6 +186,10 @@ public class AssignParking implements ActionListener
         if(ae.getSource()==bview)
         {
             new ViewParking(" ");
+        }
+        if(ae.getSource()==bVacate)
+        {
+            new VacateParking();
         }
     }
     public static void main(String args[])

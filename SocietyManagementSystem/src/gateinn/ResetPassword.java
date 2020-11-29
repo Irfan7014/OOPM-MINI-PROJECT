@@ -13,7 +13,7 @@ class ResetPassword implements ActionListener
     JButton bcheck,bcancel,bchange;
     JPasswordField tconfirm,tnew,tkeyid;
     final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    ResetPassword()
+    public ResetPassword()
     {
         //Frame Details
         jf=new JFrame("FORGOT PASSWORD");

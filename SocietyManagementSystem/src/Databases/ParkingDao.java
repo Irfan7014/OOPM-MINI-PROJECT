@@ -107,4 +107,61 @@ public class ParkingDao
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }        
     }
+    public boolean findParkingSpot(int spot)
+    {
+        boolean check=false;
+        try 
+        {
+            Databasec1 c=new Databasec1();
+            ResultSet rs = c.s.executeQuery("SELECT * FROM PARKING WHERE PARKING_SPOT= "+spot+";");
+            while(rs.next()) 
+            {
+                check=true;
+                break;
+            }
+        }
+        catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }   
+        return check;
+    }
+    public ArrayList<String> parkingDetails(int spot)
+    {
+        ArrayList<String> details=new ArrayList<String>();
+        try 
+        {
+            Databasec1 c=new Databasec1();
+            ResultSet rs = c.s.executeQuery("SELECT * FROM PARKING WHERE PARKING_SPOT= "+spot+";");
+            while(rs.next()) 
+            {
+                details.add(rs.getString("NAME"));
+                details.add(rs.getString("FLAT"));
+                details.add(rs.getString("VEHICLE_NUMBER"));
+                details.add(rs.getString("VEHICLE_TYPE"));
+            }
+        }
+        catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }   
+        return details;
+    }
+    public void vacateParking(int spot)
+    {
+        try 
+        {
+            Databasec1 c=new Databasec1();
+            if(findParkingSpot(spot))
+            {
+                String q="DELETE FROM PARKING WHERE PARKING_SPOT="+spot+";";
+                c.s.executeUpdate(q);
+                JOptionPane.showMessageDialog(null, "PARKING SPOT "+spot+" VACATED SUCESSFULLY!"); 
+            }
+        }
+        catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }        
+    }
 }
