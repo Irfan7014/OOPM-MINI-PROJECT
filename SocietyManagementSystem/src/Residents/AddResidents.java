@@ -199,6 +199,8 @@ public class AddResidents implements ActionListener
         G2.add(jrbOwner);
         G2.add(jrbRent);
         
+        bView.addActionListener(this);
+        bUpdate.addActionListener(this);
         bAddResidents.addActionListener(this);
         bback.addActionListener(this);
         jf.setVisible(true);
@@ -245,8 +247,7 @@ public class AddResidents implements ActionListener
         }
         if(ae.getSource()==bView)
         {
-            jf.dispose();
-            new ViewResidents();
+            new ViewResidents(" ");
         }
         if(ae.getSource()==bUpdate)
         {

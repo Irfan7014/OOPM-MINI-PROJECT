@@ -255,7 +255,7 @@ public class MainPage implements ActionListener
         if(msg.equals("View Residents"))
         {
             jf.dispose();
-            ViewResidents vr=new ViewResidents();
+            new ViewResidents();
         }
         if(msg.equals("Add Residents"))
         {

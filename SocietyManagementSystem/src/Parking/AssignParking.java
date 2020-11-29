@@ -176,7 +176,7 @@ public class AssignParking implements ActionListener
         }
         if(ae.getSource()==bview)
         {
-            new ViewParkingViaAssign();
+            new ViewParking(" ");
         }
     }
     public static void main(String args[])

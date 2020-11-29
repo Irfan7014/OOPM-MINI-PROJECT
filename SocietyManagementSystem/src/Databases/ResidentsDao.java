@@ -1,5 +1,4 @@
 package Databases;
-import Parking.Parking;
 import Residents.AddResidents;
 import Residents.Residents;
 import java.sql.ResultSet;
@@ -50,7 +49,7 @@ public class ResidentsDao
     
     public void updateResidentDetails(Residents resident)
     {
-        
+                
     }
     
     public ArrayList<Residents> residentDetails()
