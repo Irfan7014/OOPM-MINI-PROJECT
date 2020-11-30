@@ -25,7 +25,7 @@ public class AddToNoticeBoard implements ActionListener
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jf.setResizable(false);
         jf.setLayout(null);
-        jf.setLocation(800, 500);
+        jf.setLocation(100, 100);
         jf.setSize(750, 450);
         
         //Title
@@ -36,21 +36,21 @@ public class AddToNoticeBoard implements ActionListener
         jf.add(lblTitle);
         
         //JLabel Name
-        lblName = new JLabel("ENTER NAME OF FILE:- ");
-        lblName.setBounds(30, 100, 300, 35);
+        lblName = new JLabel("DISPLAY NAME OF FILE:- ");
+        lblName.setBounds(30, 100, 320, 35);
         lblName.setFont(new Font("Times_New_Roman", Font.BOLD, 25));
         lblName.setForeground(Color.BLACK);
         jf.add(lblName);
         
         //JTextField Name
         tName = new JTextField();
-        tName.setBounds(340, 100, 300, 40);
+        tName.setBounds(360, 100, 300, 40);
         tName.setFont(new Font("serif", Font.PLAIN, 28));
         tName.setForeground(Color.BLACK);
         jf.add(tName);
         
         //JLabel Path
-        lblPath = new JLabel("ENTER FILE PATH:- ");
+        lblPath = new JLabel("ENTER FILE NAME:- ");
         lblPath.setBounds(30, 200, 300, 40);
         lblPath.setFont(new Font("Times_New_Roman", Font.BOLD, 25));
         lblPath.setForeground(Color.BLACK);
@@ -58,7 +58,7 @@ public class AddToNoticeBoard implements ActionListener
         
         //JTextField Path
         tPath = new JTextField();
-        tPath.setBounds(340, 200, 300, 40);
+        tPath.setBounds(360, 200, 300, 40);
         tPath.setFont(new Font("serif", Font.PLAIN, 28));
         tPath.setForeground(Color.BLACK);
         jf.add(tPath);

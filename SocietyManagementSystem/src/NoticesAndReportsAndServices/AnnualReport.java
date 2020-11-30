@@ -9,13 +9,13 @@ public class AnnualReport
     {
         try 
         {
-            File pdfFile = new File("D:\\Cloned Repositories\\OOPM-MINI-PROJECT\\SocietyManagementSystem\\src\\NoticesAndReportsAndServices\\2018-2019 Annual Report.pdf");
+            File pdfFile = new File("D:\\Cloned Repositories\\OOPM-MINI-PROJECT\\SocietyManagementSystem\\src\\NoticesAndReportsAndServices\\Annual Report.pdf");
             if (pdfFile.exists()) 
             {
                 if (Desktop.isDesktopSupported()) {
                     Desktop.getDesktop().open(pdfFile);
                 } else {
-                    System.out.println("Awt Desktop is not supported!");
+                    System.out.println("AWT Desktop is not supported!");
                 }
             } 
             else 
