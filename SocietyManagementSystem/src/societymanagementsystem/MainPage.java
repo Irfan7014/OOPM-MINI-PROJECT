@@ -214,7 +214,6 @@ public class MainPage implements ActionListener
         }
         if(msg.equals("Annual Report"))
         {
-            jf.dispose();
             AnnualReport ar=new AnnualReport();
         }
         if(msg.equals("Household Services Contacts"))
