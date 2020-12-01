@@ -1,6 +1,6 @@
 package societymanagementsystem;
 import AdminLogin.Logins;
-import Maintenance.*;
+import Maintainance.*;
 import Members.SocietyMembers;
 import NoticesAndReportsAndServices.*;
 import Parking.*;
@@ -55,7 +55,7 @@ public class MainPage implements ActionListener
         mnRecordResidents.add(view_residents);
         
         //******************************************//
-        JMenu mnRecordMaintenance = new JMenu("Maintenance");
+        JMenu mnRecordMaintenance = new JMenu("Maintainance");
         mnRecordMaintenance.setFont(new Font("Trebuchet MS", Font.BOLD, 22));
         
         JMenuItem calculate_maintenance = new JMenuItem("Calculate Maintenance");
@@ -244,7 +244,7 @@ public class MainPage implements ActionListener
         if(msg.equals("Send Maintenance"))
         {
             jf.dispose();
-            CheckMaintenance sm=new CheckMaintenance();            
+            CheckMaintainance sm=new CheckMaintainance();
         }
         if(msg.equals("Calculate Maintenance"))
         {
