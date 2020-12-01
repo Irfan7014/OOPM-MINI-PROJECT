@@ -1,6 +1,6 @@
-package Maintainance;
+package Maintenance;
 
-import Databases.MaintainanceDao;
+import Databases.MaintenanceDao;
 import societymanagementsystem.MainPage;
 
 import javax.swing.*;
@@ -8,13 +8,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ViewMaintainance {
+public class ViewMaintenance {
     JFrame jf, frame;
     JButton bcancel;
     JPanel contentPane;
     String column_names[]={"OWNER", "FLAT"};
     JTable table;
-    public ViewMaintainance() {
+    public ViewMaintenance() {
         frame = new JFrame("Database Search Result");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -30,10 +30,10 @@ public class ViewMaintainance {
         JScrollPane scroll = new JScrollPane(table);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        MaintainanceDao maintainanceDao = new MaintainanceDao();
-        ArrayList<Maintainance> maintainance_details = maintainanceDao.maintainanceDetails();
+        MaintenanceDao maintainanceDao = new MaintenanceDao();
+        ArrayList<Maintenance> maintainance_details = maintainanceDao.maintainanceDetails();
         try{
-            for(Maintainance details: maintainance_details) {
+            for(Maintenance details: maintainance_details) {
                 model.addRow(new Object[]{details.getName(), details.getFlat()});
             }
             frame.add(scroll);
@@ -47,6 +47,6 @@ public class ViewMaintainance {
         }
     }
     public static void main(String args[]) {
-        new ViewMaintainance();
+        new ViewMaintenance();
     }
 }

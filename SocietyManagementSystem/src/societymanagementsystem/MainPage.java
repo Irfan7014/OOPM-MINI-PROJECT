@@ -1,6 +1,7 @@
 package societymanagementsystem;
+import Maintenance.CalculateMaintenance;
+import Maintenance.CheckMaintenance;
 import AdminLogin.Logins;
-import Maintainance.*;
 import Members.SocietyMembers;
 import NoticesAndReportsAndServices.*;
 import Parking.*;
@@ -244,7 +245,7 @@ public class MainPage implements ActionListener
         if(msg.equals("Send Maintenance"))
         {
             jf.dispose();
-            CheckMaintainance sm=new CheckMaintainance();
+            CheckMaintenance sm=new CheckMaintenance();
         }
         if(msg.equals("Calculate Maintenance"))
         {
