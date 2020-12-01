@@ -47,9 +47,48 @@ public class ResidentsDao
         return k;
     }
     
+    public Residents findDetailsAboutResident(String Building,String Flat)
+    {
+        Residents resident = new Residents();
+        try
+        {
+            Databasec1 c=new Databasec1();
+            ResultSet rs=c.s.executeQuery("SELECT * FROM RESIDENTS WHERE BUILDING_NUMBER= '"+Building+"' AND FLAT_NUMBER= '"+Flat+"';");
+            while(rs.next())
+            {
+                resident.setName(rs.getString("NAME"));
+                resident.setBuildingNum(rs.getString("BUILDING_NUMBER"));
+                resident.setFlatNum(rs.getString("FLAT_NUMBER"));
+                resident.setDOB(rs.getString("DOB"));
+                resident.setOccupation(rs.getString("OCCUPATION"));
+                resident.setYearOfArrival(Integer.parseInt(rs.getString("ARRIVAL_YEAR")));
+                resident.setTotalMembers(Integer.parseInt(rs.getString("TOTAL_FAMILY_MEMBERS")));
+                resident.setMaritalStatus(rs.getString("MARITAL_STATUS"));
+                resident.setRentOrOwner(rs.getString("RENT_OWNER"));
+            }
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+        }
+        return resident;
+    }
     public void updateResidentDetails(Residents resident)
     {
-                
+        try
+        {
+            Databasec1 c=new Databasec1();
+            String q="UPDATE RESIDENTS SET NAME= '"+resident.getName()+"', BUILDING_NUMBER= '"+resident.getBuildingNum()+"', FLAT_NUMBER= '"+resident.getFlatNum()+"', DOB= '"+resident.getDOB()+"', OCCUPATION= '"+resident.getOccupation()+"', ARRIVAL_YEAR= "+resident.getYearOfArrival()+
+                    ", TOTAL_FAMILY_MEMBERS= "+resident.getTotalMembers()+", MARITAL_STATUS= '"+resident.getMaritalStatus()+"', RENT_OWNER= '"+resident.getRentOrOwner()+"' WHERE BUILDING_NUMBER= '"+resident.getBuildingNum()+"' AND FLAT_NUMBER= '"+resident.getFlatNum()+"';";
+            System.out.println(q);
+            c.s.executeUpdate(q);
+            JOptionPane.showMessageDialog(null, "RESIDENT DETAILS UPDATED!");
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"UPDATE FAILED");
+        }                
     }
     
     public ArrayList<Residents> residentDetails()
