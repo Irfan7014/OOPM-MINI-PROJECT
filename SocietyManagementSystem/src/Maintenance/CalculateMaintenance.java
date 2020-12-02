@@ -408,8 +408,13 @@ public class CalculateMaintenance implements ActionListener
         {
             jf.dispose();
             MaintenanceDao dao=new MaintenanceDao();
-            double paidAmount = Double.parseDouble(JOptionPane.showInputDialog(null, "PLEASE ENTER THE AMOUNT PAID!", "Input", JOptionPane.QUESTION_MESSAGE));
-            dao.payAmount(tBuilding.getText(),tFlat.getText(),paidAmount);
+            if(tBuilding.getText().length()>0&&tFlat.getText().length()>0)
+            {
+                double paidAmount = Double.parseDouble(JOptionPane.showInputDialog(null, "PLEASE ENTER THE AMOUNT PAID!", "Input", JOptionPane.QUESTION_MESSAGE));
+                dao.payAmount(tBuilding.getText(),tFlat.getText(),paidAmount);
+            }
+            else
+                JOptionPane.showMessageDialog(null,"ENTER DETAILS!");
             new CalculateMaintenance();
         }
     }

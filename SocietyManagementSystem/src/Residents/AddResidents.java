@@ -234,7 +234,8 @@ public class AddResidents implements ActionListener
             ResidentsDao residentDao=new ResidentsDao();
             boolean check=residentDao.checkResident(resident);
             if(!check)
-            {
+            {   
+                jf.dispose();
                 residentDao.addResidents(resident);
                 new AddResidents();
             }

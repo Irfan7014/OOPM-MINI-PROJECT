@@ -12,7 +12,7 @@ public class ViewMaintenance {
     JFrame jf, frame;
     JButton bcancel;
     JPanel contentPane;
-    String column_names[]={"OWNER", "FLAT"};
+    String column_names[]={"NAME", "BUILDING NUMBER", "FLAT NUMBER", "BILL AMOUNT", "ARREARS"};
     JTable table;
     public ViewMaintenance() {
         frame = new JFrame("Database Search Result");
@@ -34,7 +34,7 @@ public class ViewMaintenance {
         ArrayList<Maintenance> maintainance_details = maintainanceDao.maintainanceDetails();
         try{
             for(Maintenance details: maintainance_details) {
-                model.addRow(new Object[]{details.getName(), details.getFlat()});
+                model.addRow(new Object[]{details.getName(), details.getBuilding(), details.getFlat(), details.getCurrentBillAmount(), details.getPreviousDueAmount()});
             }
             frame.add(scroll);
             frame.setResizable(false);

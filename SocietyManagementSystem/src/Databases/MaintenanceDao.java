@@ -14,11 +14,14 @@ public class MaintenanceDao {
         ArrayList<Maintenance> maintainanceDetails = new ArrayList<Maintenance>();
         try {
             Databasec1 c = new Databasec1();
-            ResultSet rs = c.s.executeQuery("SELECT * FROM MAINTAINANCE;");
+            ResultSet rs = c.s.executeQuery("SELECT * FROM MAINTENANCE;");
             while (rs.next()) {
                 Maintenance obj = new Maintenance();
                 obj.setName(rs.getString("NAME"));
-                obj.setFlat(rs.getString("FLAT"));
+                obj.setBuilding(rs.getString("BUILDING_NUMBER"));
+                obj.setFlat(rs.getString("FLAT_NUMBER"));
+                obj.setPreviousDueAmount(rs.getString("BILL_AMOUNT"));
+                obj.setCurrentBillAmount(rs.getString("ARREARS"));
                 maintainanceDetails.add(obj);
             }
         } catch (Exception ex) {
@@ -139,6 +142,7 @@ public class MaintenanceDao {
             ex.printStackTrace();
         } 
     }
+    
     public void payAmount(String building,String flat,double amount)
     {
         double dueAmount=0,arrears=0;

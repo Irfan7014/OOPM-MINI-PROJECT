@@ -15,7 +15,7 @@ public class ResidentsDao
             String q="INSERT INTO RESIDENTS (NAME, BUILDING_NUMBER, FLAT_NUMBER, DOB, OCCUPATION, ARRIVAL_YEAR, TOTAL_FAMILY_MEMBERS, MARITAL_STATUS, RENT_OWNER) VALUES "
                     + "('"+resident.getName()+"', '"+resident.getBuildingNum()+"', '"+resident.getFlatNum()+"', '"+resident.getDOB()+"', '"+resident.getOccupation()+"', "+resident.getYearOfArrival()+", "
                     +resident.getTotalMembers()+", '"+resident.getMaritalStatus()+"', '"+resident.getRentOrOwner()+"');";
-            String q1="INSERT INTO MAINTENANCE (NAME, BUILDING_NUMBER, FLAT_NUMBER, BILL_AMOUNT, ARREARS) VALUES ('"+resident.getName()+"', '"+resident.getBuildingNum()+"', '"+resident.getFlatNum()+"', '"+"0, 0);";
+            String q1="INSERT INTO MAINTENANCE (NAME, BUILDING_NUMBER, FLAT_NUMBER, BILL_AMOUNT, ARREARS) VALUES ('"+resident.getName()+"', '"+resident.getBuildingNum()+"', '"+resident.getFlatNum()+"', "+"0, 0);";
             c.s.executeUpdate(q1);
             c.s.executeUpdate(q);
             JOptionPane.showMessageDialog(null, "RESIDENT ADDED!");
@@ -82,9 +82,10 @@ public class ResidentsDao
             Databasec1 c=new Databasec1();
             String q="UPDATE RESIDENTS SET NAME= '"+resident.getName()+"', BUILDING_NUMBER= '"+resident.getBuildingNum()+"', FLAT_NUMBER= '"+resident.getFlatNum()+"', DOB= '"+resident.getDOB()+"', OCCUPATION= '"+resident.getOccupation()+"', ARRIVAL_YEAR= "+resident.getYearOfArrival()+
                     ", TOTAL_FAMILY_MEMBERS= "+resident.getTotalMembers()+", MARITAL_STATUS= '"+resident.getMaritalStatus()+"', RENT_OWNER= '"+resident.getRentOrOwner()+"' WHERE BUILDING_NUMBER= '"+resident.getBuildingNum()+"' AND FLAT_NUMBER= '"+resident.getFlatNum()+"';";
-            String q1="INSERT INTO MAINTENANCE (NAME, BUILDING_NUMBER, FLAT_NUMBER, BILL_AMOUNT, ARREARS) VALUES ('"+resident.getName()+"', '"+resident.getBuildingNum()+"', '"+resident.getFlatNum()+"', '"+"0, 0);";
+            String q1="UPDATE MAINTENANCE SET NAME= '"+resident.getName()+"', BUILDING_NUMBER= '"+resident.getBuildingNum()+"', FLAT_NUMBER= '"+resident.getFlatNum()+"', BILL_AMOUNT= 0, ARREARS= 0 WHERE BUILDING_NUMBER= '"
+                    +resident.getBuildingNum()+"' AND FLAT_NUMBER= '"+resident.getFlatNum()+"';";
             c.s.executeUpdate(q1);
-            System.out.println(q);
+            System.out.println(q+" "+q1);
             c.s.executeUpdate(q);
             JOptionPane.showMessageDialog(null, "RESIDENT DETAILS UPDATED!");
         } 

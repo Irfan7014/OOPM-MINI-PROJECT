@@ -1,6 +1,7 @@
 package societymanagementsystem;
 import Maintenance.CalculateMaintenance;
 import AdminLogin.Logins;
+import Maintenance.ViewMaintenance;
 import Members.SocietyMembers;
 import NoticesAndReportsAndServices.*;
 import Parking.*;
@@ -19,7 +20,7 @@ public class MainPage implements ActionListener
     JLabel lbltitle,lblimage;
     public static void main(String args[])
     {
-        MainPage mp=new MainPage();
+        new MainPage();
     }
     public MainPage() 
     {
@@ -245,6 +246,11 @@ public class MainPage implements ActionListener
         {
             jf.dispose();
             CalculateMaintenance cm=new CalculateMaintenance();
+        }
+        if(msg.equals("View Maintenance"))
+        {
+            jf.dispose();
+            new ViewMaintenance();
         }
         if(msg.equals("View Residents"))
         {
