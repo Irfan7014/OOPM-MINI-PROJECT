@@ -1,10 +1,8 @@
 package NoticesAndReportsAndServices;
-import Databases.Databasec1;
 import Databases.HouseholdServicesDao;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.*;
 import java.util.ArrayList;
 import societymanagementsystem.MainPage;
 public class Household_Services implements ActionListener

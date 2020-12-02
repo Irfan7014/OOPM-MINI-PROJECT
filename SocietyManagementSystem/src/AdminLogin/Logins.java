@@ -1,5 +1,6 @@
 package AdminLogin;
 import Databases.Databasec1;
+import ResidentView.ResidentViewMainPage;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -7,7 +8,7 @@ import java.sql.*;
 import societymanagementsystem.MainPage;
 public class Logins extends JFrame implements ActionListener 
 {
-    JButton blogin,bcancel,bforget;
+    JButton blogin,bcancel,bforget,bViewAsResident;
     JLabel lblusername,lblpassword,image;
     JTextField tusername;
     JPasswordField tpassword;
@@ -69,6 +70,15 @@ public class Logins extends JFrame implements ActionListener
         bforget.addActionListener(this);
         add(bforget);
         
+        //View Button As Resident
+        bViewAsResident=new JButton("VIEW AS RESIDENT");
+        bViewAsResident.setBounds(13,0,250,30);
+        bViewAsResident.setBackground(Color.RED);
+        bViewAsResident.setForeground(Color.WHITE);
+        bViewAsResident.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
+        bViewAsResident.addActionListener(this);
+        add(bViewAsResident);
+        
         //Image Details        
         ImageIcon i=new ImageIcon("src\\societymanagementsystem\\images\\login.jpg");
         Image i1 = i.getImage().getScaledInstance(150,150,Image.SCALE_DEFAULT);
@@ -122,6 +132,11 @@ public class Logins extends JFrame implements ActionListener
         {
             dispose();
             ForgotPassword fp=new ForgotPassword();
+        }
+        else if(ae.getSource()==bViewAsResident)
+        {
+            dispose();
+            new ResidentViewMainPage();
         }
     }
     public static void main(String args[]){

@@ -1,31 +1,41 @@
 package ResidentView;
 
+import Databases.HouseholdServicesDao;
+import Databases.ParkingDao;
+import Parking.Parking;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class ResidentViewMainPage implements ActionListener
 {
-    JFrame jf;
+    JFrame jf1,jf;
     JPanel contentPane;
     JLabel lbltitle,lblimage;
     public ResidentViewMainPage()
     {
-        jf=new JFrame("HOME PAGE");
-        jf.setBounds(10,10, 1296, 700);
-        jf.setResizable(false);
+        jf1=new JFrame("HOME PAGE");
+        jf1.setBounds(10,10, 1296, 700);
+        jf1.setResizable(false);
         contentPane = new JPanel();
-        jf.setContentPane(contentPane);
+        jf1.setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JMenuBar menuBar = new JMenuBar();
@@ -35,21 +45,10 @@ public class ResidentViewMainPage implements ActionListener
         contentPane.add(menuBar);
         
         //******************************************//
-        JMenu mnRecordMaintenance = new JMenu("Maintenance");
-        mnRecordMaintenance.setFont(new Font("Trebuchet MS", Font.BOLD, 22));
-
-        JMenuItem view_maintenance = new JMenuItem("View Maintenance");
-        view_maintenance.setBackground(new Color(211, 211, 211));
-        view_maintenance.setForeground(Color.DARK_GRAY);
-        view_maintenance.addActionListener(this);
-        view_maintenance.setFont(new Font("Trebuchet MS",Font.PLAIN,20));
-        mnRecordMaintenance.add(view_maintenance);
-        
-        //******************************************//
         JMenu mnRecordParking = new JMenu("Parking");
         mnRecordParking.setFont(new Font("Trebuchet MS", Font.BOLD, 22));
         
-        JMenuItem parking_details = new JMenuItem("Parking Details");
+        JMenuItem parking_details = new JMenuItem("View Parking Details");
         parking_details.addActionListener(this);
         parking_details.setBackground(new Color(211, 211, 211));
         parking_details.setForeground(Color.DARK_GRAY);
@@ -96,13 +95,6 @@ public class ResidentViewMainPage implements ActionListener
         JMenu mnRecordExit = new JMenu("Exit");
         mnRecordExit.setFont(new Font("Trebuchet MS", Font.BOLD,22));
         
-        JMenuItem logout = new JMenuItem("Logout");
-        logout.addActionListener(this);
-        logout.setBackground(new Color(211, 211, 211));
-        logout.setForeground(Color.DARK_GRAY);
-        logout.setFont(new Font("Trebuchet MS",Font.PLAIN,20));
-        mnRecordExit.add(logout);
-        
         JMenuItem close = new JMenuItem("Close");
         close.addActionListener(this);
         close.setBackground(new Color(211, 211, 211));
@@ -110,8 +102,6 @@ public class ResidentViewMainPage implements ActionListener
         close.setFont(new Font("Trebuchet MS",Font.PLAIN,20));
         mnRecordExit.add(close);
        
-
-        menuBar.add(mnRecordMaintenance);
         menuBar.add(mnRecordParking);
         menuBar.add(mnRecordOthers);
         menuBar.add(mnRecordAbout);
@@ -131,15 +121,40 @@ public class ResidentViewMainPage implements ActionListener
         contentPane.add(lblimage);
         
 
-        jf.getContentPane().setBackground(Color.WHITE);
+        jf1.getContentPane().setBackground(Color.WHITE);
         contentPane.setBackground(Color.WHITE);
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jf.setVisible(true);
+        jf1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jf1.setVisible(true);
     }
     public void actionPerformed(ActionEvent ae)
     {
-        
-    }
+        String msg = ae.getActionCommand();
+        if(msg.equals("Close"))
+        {
+            jf1.dispose();            
+        }
+        if(msg.equals("View Parking Details"))
+        {
+            new ViewParkingByResidents();
+        }
+        if(msg.equals("Household Services Contacts"))
+        {
+            new ShowHouseholdServices();
+        }
+        if(msg.equals("Society Members"))
+        {
+            new ResidentViewSocietyMembers();
+        }
+        if(msg.equals("Notice Board"))
+        {
+            new ResidentViewNoticeBoard();            
+        }
+        if(msg.equals("Annual Report"))
+        {
+            new ResidentViewAnnualReport();            
+        }
+    }    
+    
     public static void main(String args[])
     {
         new ResidentViewMainPage();
