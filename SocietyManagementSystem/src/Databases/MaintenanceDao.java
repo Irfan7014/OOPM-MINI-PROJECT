@@ -67,6 +67,7 @@ public class MaintenanceDao {
         }
         return name;
     }
+    
     public int getVehicleCount(String building,String flat)
     {
         int count=0;
@@ -85,5 +86,98 @@ public class MaintenanceDao {
             ex.printStackTrace();
         }
         return count;
+    }
+    
+    public double getArrears(String building,String flat)
+    {
+        double arrears=0;
+        try 
+        {
+            Databasec1 c=new Databasec1();
+            ResultSet rs = c.s.executeQuery("SELECT * FROM MAINTENANCE WHERE BUILDING_NUMBER= '"+building+"' AND FLAT_NUMBER= '"+flat+"';");
+            while(rs.next())
+            {
+                arrears=Double.parseDouble(rs.getString("ARREARS"));
+            }
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Invalid SQLException");
+            ex.printStackTrace();
+        }
+        return arrears;
+    }
+    
+    public void addAmount(String building,String flat,double amount)
+    {
+        double dueAmount=0,arrears=0;
+        try 
+        {
+            Databasec1 c=new Databasec1();
+            ResultSet rs = c.s.executeQuery("SELECT * FROM MAINTENANCE WHERE BUILDING_NUMBER= '"+building+"' AND FLAT_NUMBER= '"+flat+"';");
+            while(rs.next())
+            {
+                dueAmount=Double.parseDouble(rs.getString("BILL_AMOUNT"));
+                arrears=dueAmount;
+            }
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Invalid SQLException");
+            ex.printStackTrace();
+        }    
+        try
+        {
+            Databasec1 c=new Databasec1();
+            c.s.executeUpdate("UPDATE MAINTENANCE SET BILL_AMOUNT= "+amount+", ARREARS= "+(dueAmount+arrears)+" WHERE BUILDING_NUMBER= '"+building+"' AND FLAT_NUMBER= '"+flat+"';");
+            JOptionPane.showMessageDialog(null,"THE AMOUNT HAS BEEN UPDATED TO THE DATABASE");
+        }
+        catch (SQLException ex) 
+        {
+            System.out.println("Invalid SQLException");
+            JOptionPane.showMessageDialog(null,"AMOUNT UPDATE FAILED!");
+            ex.printStackTrace();
+        } 
+    }
+    public void payAmount(String building,String flat,double amount)
+    {
+        double dueAmount=0,arrears=0;
+        try 
+        {
+            Databasec1 c=new Databasec1();
+            ResultSet rs = c.s.executeQuery("SELECT * FROM MAINTENANCE WHERE BUILDING_NUMBER= '"+building+"' AND FLAT_NUMBER= '"+flat+"';");
+            while(rs.next())
+            {
+                dueAmount=Double.parseDouble(rs.getString("BILL_AMOUNT"));
+                arrears=dueAmount;
+            }
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Invalid SQLException");
+            ex.printStackTrace();
+        }  
+        if(arrears>0)
+        {
+            arrears=arrears-amount;
+            if(arrears<0)
+                arrears*=-1;
+        }
+        if(arrears==0)
+        {
+            dueAmount-=amount;
+        }
+        try
+        {
+            Databasec1 c=new Databasec1();
+            c.s.executeUpdate("UPDATE MAINTENANCE SET BILL_AMOUNT= "+dueAmount+", ARREARS= "+(arrears)+" WHERE BUILDING_NUMBER= '"+building+"' AND FLAT_NUMBER= '"+flat+"';");
+            JOptionPane.showMessageDialog(null,"THE AMOUNT HAS BEEN UPDATED TO THE DATABASE");
+        }
+        catch (SQLException ex) 
+        {
+            System.out.println("Invalid SQLException");
+            JOptionPane.showMessageDialog(null,"AMOUNT UPDATION FAILED!");
+            ex.printStackTrace();
+        }         
     }
 }

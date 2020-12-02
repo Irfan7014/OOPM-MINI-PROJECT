@@ -1,6 +1,5 @@
 package societymanagementsystem;
 import Maintenance.CalculateMaintenance;
-import Maintenance.CheckMaintenance;
 import AdminLogin.Logins;
 import Members.SocietyMembers;
 import NoticesAndReportsAndServices.*;
@@ -66,12 +65,12 @@ public class MainPage implements ActionListener
         calculate_maintenance.setFont(new Font("Trebuchet MS",Font.PLAIN,20));
         mnRecordMaintenance.add(calculate_maintenance);
 
-        JMenuItem send_maintenance = new JMenuItem("Send Maintenance");
-        send_maintenance.setBackground(new Color(211, 211, 211));
-        send_maintenance.setForeground(Color.DARK_GRAY);
-        send_maintenance.addActionListener(this);
-        send_maintenance.setFont(new Font("Trebuchet MS",Font.PLAIN,20));
-        mnRecordMaintenance.add(send_maintenance);
+        JMenuItem view_maintenance = new JMenuItem("View Maintenance");
+        view_maintenance.setBackground(new Color(211, 211, 211));
+        view_maintenance.setForeground(Color.DARK_GRAY);
+        view_maintenance.addActionListener(this);
+        view_maintenance.setFont(new Font("Trebuchet MS",Font.PLAIN,20));
+        mnRecordMaintenance.add(view_maintenance);
         
         //******************************************//
         JMenu mnRecordParking = new JMenu("Parking");
@@ -241,11 +240,6 @@ public class MainPage implements ActionListener
         {
             jf.dispose();
             ViewParking vp=new ViewParking();
-        }
-        if(msg.equals("Send Maintenance"))
-        {
-            jf.dispose();
-            CheckMaintenance sm=new CheckMaintenance();
         }
         if(msg.equals("Calculate Maintenance"))
         {
