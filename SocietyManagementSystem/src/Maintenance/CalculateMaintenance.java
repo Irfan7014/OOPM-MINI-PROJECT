@@ -16,7 +16,7 @@ import societymanagementsystem.MainPage;
 public class CalculateMaintenance implements ActionListener
 {
     JFrame jf;
-    JButton btnBack,btnCalculate,btnUpdate,btnBack2,btnAdd;
+    JButton btnBack,btnCalculate,btnUpdate,btnBack2,btnAdd,btnUpdate1;
     JLabel lblTitle,lblBuilding,lblFlat,lblName,lblDisplayName,lblVehicleNum,lblDisplayVehicleNum;
     JLabel lblServiceCharge,lblSinkingFund,lblParkingCharges,lblInsuranceCharges,lblRepairFund,lblInterest,lblArrears;
     JLabel DisplayServiceCharge,DisplaySinkingFund,DisplayParkingCharges,DisplayInsuranceCharges,DisplayRepairFund,DisplayInterest,DisplayArrears;
@@ -71,14 +71,14 @@ public class CalculateMaintenance implements ActionListener
         jf.add(tFlat);
         
         btnBack=new JButton("BACK");
-        btnBack.setBounds(425,220,100,40);
+        btnBack.setBounds(545,220,100,40);
         btnBack.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
         btnBack.setForeground(Color.WHITE);
         btnBack.setBackground(Color.BLACK);
         jf.add(btnBack);
         
         btnCalculate=new JButton("FIND DETAILS");
-        btnCalculate.setBounds(175,220,200,40);
+        btnCalculate.setBounds(55,220,200,40);
         btnCalculate.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
         btnCalculate.setForeground(Color.WHITE);
         btnCalculate.setBackground(Color.BLACK);
@@ -238,6 +238,15 @@ public class CalculateMaintenance implements ActionListener
         btnUpdate.addActionListener(this);
         jf.add(btnUpdate);
         
+        //Button Update
+        btnUpdate1=new JButton("UPDATE BILL AMOUNT");
+        btnUpdate1.setBounds(275,220,250,40);
+        btnUpdate1.setFont(new Font("Times_New_Roman",Font.PLAIN,20));
+        btnUpdate1.setForeground(Color.WHITE);
+        btnUpdate1.setBackground(Color.BLACK);
+        btnUpdate1.addActionListener(this);
+        jf.add(btnUpdate1);
+        
         //Button Back
         btnBack2=new JButton("BACK");
         btnBack2.setBounds(570,880,100,40);
@@ -279,6 +288,8 @@ public class CalculateMaintenance implements ActionListener
         lblName.setVisible(false);
         btnBack2.setVisible(false);
         btnAdd.setVisible(false);
+        btnUpdate.setVisible(false);
+        btnUpdate1.setVisible(true);
         jf.setVisible(true);
     }
     
@@ -302,7 +313,9 @@ public class CalculateMaintenance implements ActionListener
             
             lblVehicleNum.setBounds(40,280,350,30);
             lblDisplayVehicleNum.setBounds(370,280,100,30);
-            
+            btnUpdate.setBounds(30,880,250,40);
+            btnUpdate.setVisible(true);
+            btnUpdate1.setVisible(false);
             lblVehicleNum.setVisible(true);
             lblDisplayVehicleNum.setVisible(true);
             lblName.setVisible(true);
@@ -384,6 +397,14 @@ public class CalculateMaintenance implements ActionListener
             new CalculateMaintenance();
         }   
         if(ae.getSource()==btnUpdate)
+        {
+            jf.dispose();
+            MaintenanceDao dao=new MaintenanceDao();
+            double paidAmount = Double.parseDouble(JOptionPane.showInputDialog(null, "PLEASE ENTER THE AMOUNT PAID!", "Input", JOptionPane.QUESTION_MESSAGE));
+            dao.payAmount(tBuilding.getText(),tFlat.getText(),paidAmount);
+            new CalculateMaintenance();
+        }
+        if(ae.getSource()==btnUpdate1)
         {
             jf.dispose();
             MaintenanceDao dao=new MaintenanceDao();

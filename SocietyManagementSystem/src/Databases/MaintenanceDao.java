@@ -149,7 +149,7 @@ public class MaintenanceDao {
             while(rs.next())
             {
                 dueAmount=Double.parseDouble(rs.getString("BILL_AMOUNT"));
-                arrears=dueAmount;
+                arrears=Double.parseDouble(rs.getString("ARREARS"));
             }
         } 
         catch (SQLException ex) 
@@ -160,13 +160,19 @@ public class MaintenanceDao {
         if(arrears>0)
         {
             arrears=arrears-amount;
-            if(arrears<0)
-                arrears*=-1;
+            if(arrears<=0)
+            {
+                
+                amount=arrears*-1;
+                arrears=0;
+            }
         }
-        if(arrears==0)
+        System.out.println(dueAmount+" "+arrears+" "+amount);
+        if(arrears==0&&amount>0)
         {
             dueAmount-=amount;
         }
+        System.out.println(dueAmount+" "+arrears+" "+amount);
         try
         {
             Databasec1 c=new Databasec1();
