@@ -1,6 +1,7 @@
 package AdminLogin;
 import Databases.Databasec1;
 import ResidentView.ResidentViewMainPage;
+import gateinn.GateinnLogin;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.sql.*;
 import societymanagementsystem.MainPage;
 public class Logins extends JFrame implements ActionListener 
 {
-    JButton blogin,bcancel,bforget,bViewAsResident;
+    JButton blogin,bcancel,bforget,bViewAsResident,btnGateinn;
     JLabel lblusername,lblpassword,image;
     JTextField tusername;
     JPasswordField tpassword;
@@ -71,13 +72,23 @@ public class Logins extends JFrame implements ActionListener
         add(bforget);
         
         //View Button As Resident
-        bViewAsResident=new JButton("VIEW AS RESIDENT");
-        bViewAsResident.setBounds(13,0,250,30);
+        bViewAsResident=new JButton("USE APP AS RESIDENT");
+        bViewAsResident.setBounds(250,245,280,30);
         bViewAsResident.setBackground(Color.RED);
         bViewAsResident.setForeground(Color.WHITE);
         bViewAsResident.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
         bViewAsResident.addActionListener(this);
         add(bViewAsResident);
+        
+        //JButton GateInn
+        //View Button As Resident
+        btnGateinn=new JButton("USE GATE-INN");
+        btnGateinn.setBounds(20,245,200,30);
+        btnGateinn.setBackground(Color.RED);
+        btnGateinn.setForeground(Color.WHITE);
+        btnGateinn.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,16));
+        btnGateinn.addActionListener(this);
+        add(btnGateinn);
         
         //Image Details        
         ImageIcon i=new ImageIcon("src\\societymanagementsystem\\images\\login.jpg");
@@ -92,7 +103,7 @@ public class Logins extends JFrame implements ActionListener
         setDefaultCloseOperation(WindowConstants. EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.WHITE);
         setResizable(false);
-        setSize(560,270);
+        setSize(560,350);
         setLayout(null);
         setLocation(300,200);
         setVisible(true);
@@ -137,6 +148,11 @@ public class Logins extends JFrame implements ActionListener
         {
             dispose();
             new ResidentViewMainPage();
+        }
+        else if(ae.getSource()==btnGateinn)
+        {
+            dispose();
+            new GateinnLogin();
         }
     }
     public static void main(String args[]){

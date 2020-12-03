@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import societymanagementsystem.MainPage;
 public class SocietyMembers implements ActionListener
 {
-    JFrame jf;
-    JLabel lbltitle,lblnameofmem,lbldesignation,lblchairman,lblsec,lbltreasurer,lblmem1,lblmem2,lblmem3,lblmem4,lblmem5,lblmem6,lblmem7,lblmem8;
-    JLabel lblchairman_name,lblsec_name,lbltreasurer_name,lblmem1_name,lblmem2_name,lblmem3_name,lblmem4_name,lblmem5_name,lblmem6_name,lblmem7_name,lblmem8_name;
-    String chairman_name,sec_name,treasurer_name,mem1_name,mem2_name,mem3_name,mem4_name,mem5_name,mem6_name,mem7_name,mem8_name;
-    JButton bupdate,bback;
+    private JFrame jf;
+    private JLabel lbltitle,lblnameofmem,lbldesignation,lblchairman,lblsec,lbltreasurer,lblmem1,lblmem2,lblmem3,lblmem4,lblmem5,lblmem6,lblmem7,lblmem8;
+    private JLabel lblchairman_name,lblsec_name,lbltreasurer_name,lblmem1_name,lblmem2_name,lblmem3_name,lblmem4_name,lblmem5_name,lblmem6_name,lblmem7_name,lblmem8_name;
+    private String chairman_name,sec_name,treasurer_name,mem1_name,mem2_name,mem3_name,mem4_name,mem5_name,mem6_name,mem7_name,mem8_name;
+    private JButton bupdate,bback;
     public SocietyMembers()
     {
         //Frame details

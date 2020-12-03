@@ -1,28 +1,18 @@
 package ResidentView;
 
-import Databases.HouseholdServicesDao;
-import Databases.ParkingDao;
-import Parking.Parking;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
 
 public class ResidentViewMainPage implements ActionListener
 {
@@ -114,9 +104,9 @@ public class ResidentViewMainPage implements ActionListener
         contentPane.add(lbltitle);
         
         lblimage=new JLabel();
-        lblimage.setBounds(0,30,1300,665);
+        lblimage.setBounds(0,80,1300,665);
         lblimage.setLayout(null);
-        ImageIcon img=new ImageIcon("src\\societymanagementsystem\\images\\.jpg");
+        ImageIcon img=new ImageIcon("src\\societymanagementsystem\\images\\main.jpg");
         lblimage.setIcon(img);
         contentPane.add(lblimage);
         

@@ -173,15 +173,15 @@ public class MainPage implements ActionListener
         menuBar.add(mnRecordExit);
 
         lbltitle= new JLabel("SOCIETY MANAGEMENT SYSTEM");
-        lbltitle.setForeground(new Color(90,20,181));
+        lbltitle.setForeground(new Color(90,20,180));
         lbltitle.setFont(new Font("Segoe UI Semilight", Font.BOLD, 40));
         lbltitle.setBounds(318, 30, 650, 50);
         contentPane.add(lbltitle);
         
         lblimage=new JLabel();
-        lblimage.setBounds(0,30,1300,665);
+        lblimage.setBounds(0,80,1300,665);
         lblimage.setLayout(null);
-        ImageIcon img=new ImageIcon("src\\societymanagementsystem\\images\\.jpg");
+        ImageIcon img=new ImageIcon("src\\societymanagementsystem\\images\\main.jpg");
         lblimage.setIcon(img);
         contentPane.add(lblimage);
         
