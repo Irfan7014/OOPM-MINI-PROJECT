@@ -80,7 +80,7 @@ public class VacateParking  implements ActionListener
         //Show Name
         ansName=new JLabel();
         ansName.setVisible(true);
-        ansName.setBounds(130,150,250,35);
+        ansName.setBounds(130,150,400,35);
         ansName.setForeground(Color.BLACK);
         ansName.setFont(new Font("serif",Font.BOLD,25)); 
         jf.add(ansName);

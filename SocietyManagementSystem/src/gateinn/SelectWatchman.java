@@ -87,7 +87,7 @@ public class SelectWatchman implements ActionListener
         if(ae.getSource()==bcancel)
         {
             jf.dispose();
-            MainPage mp=new MainPage();
+            new GateinnLogin();
         }
         if(ae.getSource()==bconfirm)
         {
